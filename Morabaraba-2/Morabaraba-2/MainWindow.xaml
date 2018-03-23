@@ -1,0 +1,71 @@
+﻿<Window x:Class="Morabaraba_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Morabaraba_2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid>
+            <StackPanel x:Name="gameP" HorizontalAlignment="Left" Height="198" Margin="157,42,0,0" VerticalAlignment="Top" Width="189" OpacityMask="Black" Cursor="Arrow">
+                <Image x:Name="Background_jpg" Margin="0,0,-3,0" Source="Background.jpg" Stretch="Fill" Height="194" OpacityMask="Black" Cursor="Arrow"/>
+                <Image x:Name="Background_jpg1" Height="193" Margin="0,0,-3,0" Source="Background.jpg" Stretch="Fill"/>
+            </StackPanel>
+            <Ellipse x:Name="a1" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="156,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="g7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="334,219,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="g4" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="242,220,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="g1" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="156,220,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="f6" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="302,191,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="f4" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="242,191,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="f2" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="180,191,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="e5" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="277,165,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="e4" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="242,166,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="e3" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="207,166,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="d7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="333,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="d6" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="305,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="d5" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="276,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="d3" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="207,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="d2" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="180,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="d1" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="156,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="c5" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="276,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="c4" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="242,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="c3" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="207,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="b6" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="302,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="b4" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="242,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="b2" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="179,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="a7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="330,41,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="a4" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="242,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Label x:Name="outL" Content="Label kbhbhvj" HorizontalAlignment="Left" Height="33" Margin="128,260,0,0" VerticalAlignment="Top" Width="257" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
+            <StackPanel x:Name="p1" Margin="96,71,391,115" Orientation="Vertical">
+                <Ellipse x:Name="A" Fill="#FF0D22F1" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" OpacityMask="Black" HorizontalAlignment="Left" Width="8"/>
+                <Ellipse x:Name="B" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="C" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="D" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="E" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="F" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="G" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="H" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="I" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="J" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="K" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="L" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+            </StackPanel>
+            <StackPanel x:Name="p2" Margin="401,72,87,109" Orientation="Vertical">
+                <Ellipse x:Name="M" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="N" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="O" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="P" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="Q" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="R" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="S" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="T" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="U" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="V" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="W" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="X" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>
