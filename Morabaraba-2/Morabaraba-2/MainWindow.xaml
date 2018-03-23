@@ -10,7 +10,6 @@
         <Grid>
             <StackPanel x:Name="gameP" HorizontalAlignment="Left" Height="198" Margin="157,42,0,0" VerticalAlignment="Top" Width="189" OpacityMask="Black" Cursor="Arrow">
                 <Image x:Name="Background_jpg" Margin="0,0,-3,0" Source="Background.jpg" Stretch="Fill" Height="194" OpacityMask="Black" Cursor="Arrow"/>
-                <Image x:Name="Background_jpg1" Height="193" Margin="0,0,-3,0" Source="Background.jpg" Stretch="Fill"/>
             </StackPanel>
             <Ellipse x:Name="a1" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="156,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
             <Ellipse x:Name="g7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="334,219,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
