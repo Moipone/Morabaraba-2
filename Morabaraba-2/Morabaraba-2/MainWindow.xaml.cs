@@ -32,8 +32,29 @@ namespace Morabaraba_2
         public MainWindow()
         {
             InitializeComponent();
-            
+            //get input from user 
+            ///Placing
+            string placemsg = "Where would you like to place your cow?";
+            string placeerror = "Invalid selection, please click on empty space";
 
+            ///Moving
+            string movemsg1 = "Which cow would you like to move?";
+            string movemsg2 = "Where would you like to place your cow?";
+            string moveerror1 = "Invalid selection, please choose own cow";
+            string moveerror2 = "Invalid selection, please click on empty space";
+            MessageBox.Show("jdjd"); //remove 
+
+            ///flying
+            string flymsg1 = "Which cow would you like to fly?";
+            string flysg2 = "Where would you like to land your cow?";
+            string flyerror1 = "Invalid selection, please choose own cow";
+            string flyerror2 = "Invalid selection, please click on empty space";
+
+        }
+
+        private void a1_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("jdjd"); //remove
         }
     }
 }
