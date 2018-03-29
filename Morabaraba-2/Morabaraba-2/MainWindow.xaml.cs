@@ -542,43 +542,78 @@ namespace Morabaraba_2
             }
         }
         //Complete this to allow mills to work, by updating the player position
-   /*     public void playMills()
-        {
-            //Once you found a mill, return from this method.
-            string[] list1 = player.board.getMillP1();
-            string[] list2 = player.board.getMillP2();
-            bool contained = false;
-            for (int i = 0; i < list1.Length; i++)
-            {
-                flag = player.isMill1(list1[i]);
+        /*     public void playMills()
+             {
+                 //Once you found a mill, return from this method.
+                 string[] list1 = player.board.getMillP1();
+                 string[] list2 = player.board.getMillP2();
+                 bool contained = false;
+                 for (int i = 0; i < list1.Length; i++)
+                 {
+                     flag = player.isMill1(list1[i]);
 
-                //Mill shouldn't already be contained 
-                string[] mil = player.board.checkMills1(list1[i]);
-                contained = player.isContainedInMills(mil);
-                if (flag && !contained)
-                {
-                    MessageBox.Show("Which enemy would you like to eliminate");
-                    return;
-                    //player.SetEnemyPos(hit);
-                    //player.accountForMill1();
-                }
-            }
-            for (int i = 0; i < list2.Length; i++)
-            {
-                flag = player.isMill2(list2[i]);
-                //Mill shouldn't already be contained 
-                string[] mil = player.board.checkMills2(list2[i]);
-                contained = player.isContainedInMills(mil);
-                if (flag && !contained)
-                {
-                    MessageBox.Show("Which enemy would you like to eliminate");
-                    return;
-                    //player.SetEnemyPos(hit);
-                    //player.accountForMill2();
-                }
-            }
-        }*/
+                     //Mill shouldn't already be contained 
+                     string[] mil = player.board.checkMills1(list1[i]);
+                     contained = player.isContainedInMills(mil);
+                     if (flag && !contained)
+                     {
+                         MessageBox.Show("Which enemy would you like to eliminate");
+                         return;
+                         //player.SetEnemyPos(hit);
+                         //player.accountForMill1();
+                     }
+                 }
+                 for (int i = 0; i < list2.Length; i++)
+                 {
+                     flag = player.isMill2(list2[i]);
+                     //Mill shouldn't already be contained 
+                     string[] mil = player.board.checkMills2(list2[i]);
+                     contained = player.isContainedInMills(mil);
+                     if (flag && !contained)
+                     {
+                         MessageBox.Show("Which enemy would you like to eliminate");
+                         return;
+                         //player.SetEnemyPos(hit);
+                         //player.accountForMill2();
+                     }
+                 }
+             }*/
         //Clean up this code
+        public void startPlayingMove()
+        {
+
+            if (blueCows > 0 || yellowCows > 0) //==1
+            {
+                if (tmpPlayer == "CW" && flagMove)
+                {
+
+                    if (validNeighbour(movefrom, move))
+                    {
+                        player.Play(move, tmpPlayer);
+
+                        updateBoardWhite(move, tmpPlayer); //place
+
+                    }
+                }
+                if (tmpPlayer == "CB" && flagMove)
+                {
+                    if (validNeighbour(movefrom, move))
+                    {
+                        player.Play(move, tmpPlayer);
+
+                        updateBoardBlack(move, tmpPlayer);
+                    }
+
+                }
+                //string board = player.board.ToString();
+            }
+            if (blueCows <= 0 && yellowCows <= 0)
+            {
+                flagMove = true;
+                movecows(move, tmpPlayer);
+            }
+        }
+
         public void startPlaying()
         {
 
