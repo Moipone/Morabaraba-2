@@ -677,8 +677,8 @@ namespace Morabaraba_2
             if (!flag)
             {
                 move = pos;
-                startPlaying();
-              //  playMills();
+                if (!flagMove) { startPlaying(); } else if (flagMove) { startPlayingMove(); }
+                //  playMills();
             }
         } //updateGame ends 
 
