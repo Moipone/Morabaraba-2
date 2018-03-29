@@ -452,6 +452,62 @@ namespace Morabaraba_2
             
 
         }
+
+        public bool validNeighbour(string from, string to)
+        {
+            switch (from)
+            {
+                case "a1":
+                    if (to == "d1" || to == "b2" || to == "a4") { return true; } else { return false; }
+                case "a4":
+                    if (to == "a1" || to == "b4" || to == "a7") { return true; } else { return false; }
+                case "a7":
+                    if (to == "a4" || to == "b6" || to == "d7") { return true; } else { return false; }
+                case "b2":
+                    if (to == "a1" || to == "d2" || to == "c3" || to == "b4") { return true; } else { return false; }
+                case "b4":
+                    if (to == "b2" || to == "a4" || to == "b6" || to == "c4") { return true; } else { return false; }
+                case "b6":
+                    if (to == "b4" || to == "a7" || to == "c5" || to == "d6") { return true; } else { return false; }
+                case "c3":
+                    if (to == "b2" || to == "d3" || to == "c4") { return true; } else { return false; }
+                case "c4":
+                    if (to == "c3" || to == "b4" || to == "c5") { return true; } else { return false; }
+                case "c5":
+                    if (to == "c4" || to == "b6" || to == "d5") { return true; } else { return false; }
+                case "d1":
+                    if (to == "a1" || to == "d2" || to == "g1") { return true; } else { return false; }
+                case "d2":
+                    if (to == "d1" || to == "b2" || to == "f2" || to == "d3") { return true; } else { return false; }
+                case "d3":
+                    if (to == "d2" || to == "c3" || to == "e3") { return true; } else { return false; }
+                case "d5":
+                    if (to == "c5" || to == "e5" || to == "d6") { return true; } else { return false; }
+                case "d6":
+                    if (to == "d5" || to == "b6" || to == "f6" || to == "d7") { return true; } else { return false; }
+                case "d7":
+                    if (to == "a7" || to == "d6" || to == "g7") { return true; } else { return false; }
+                case "e3":
+                    if (to == "d3" || to == "f2" || to == "e4") { return true; } else { return false; }
+                case "e4":
+                    if (to == "e3" || to == "e5" || to == "f4") { return true; } else { return false; }
+                case "e5":
+                    if (to == "e4" || to == "d5" || to == "f6") { return true; } else { return false; }
+                case "f2":
+                    if (to == "g1" || to == "e3" || to == "d2" || to == "f4") { return true; } else { return false; }
+                case "f4":
+                    if (to == "e4" || to == "g4" || to == "f2" || to == "f4") { return true; } else { return false; }
+                case "f6":
+                    if (to == "f4" || to == "d6" || to == "e5" || to == "g7") { return true; } else { return false; }
+                case "g1":
+                    if (to == "d1" || to == "f2" || to == "g4") { return true; } else { return false; }
+                case "g4":
+                    if (to == "g1" || to == "g7" || to == "f4") { return true; } else { return false; }
+                case "g7":
+                    if (to == "g4" || to == "f6" || to == "d7") { return true; } else { return false; }
+            }
+            return false;
+        }
         public void movecows(string from, string player)
         {
             if (isvalidcowtomove(from, player) == true)
