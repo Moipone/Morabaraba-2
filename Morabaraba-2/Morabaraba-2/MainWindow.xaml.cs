@@ -513,32 +513,30 @@ namespace Morabaraba_2
             if (isvalidcowtomove(from, player) == true)
             {
                 string to = from;
+                movefrom = from;
                 updateBoardBlank(from); // selected cow to be moved back to blank
-                //allcowpos.Remove(from); //removes cow all from played possition list
                 if (player == "CB")
                 {
+                    // MessageBox.Show("Here");
                     yellowCows++; //gives yellow player a cow to place anywhere
-                    startPlaying();
+                    startPlayingMove();
                     updateBoardBlack(to, player);
-                    yellowplayer.Add(to); // adds new pos to yellow players list
-                    allcowpos.Add(to);    //adds new pos to all played pos list
+
                     allcowpos.Remove(from); //removes cow all from played possition list
                     yellowplayer.Remove(from); //removes cow from yellowplayes list
+                    //startPlayingMove();
                 }
                 if (player == "CW")
                 {
+                    // MessageBox.Show("Here");
                     blueCows++; //gives blue player a cow to place anywhere
-                    startPlaying();
+                    startPlayingMove();
                     updateBoardWhite(to, player);
-                    blueplayer.Add(to); // adds new pos to yellow players list
-                    allcowpos.Add(to);    //adds new pos to all played pos list
+
                     allcowpos.Remove(from); //removes cow all from played possition list
                     blueplayer.Remove(from); //removes cow from yellowplayes list
+                    //startPlayingMove();
                 }
-            }
-            else
-            {
-               // MessageBox.Show("you can only move your own cow");
             }
         }
         //Complete this to allow mills to work, by updating the player position
