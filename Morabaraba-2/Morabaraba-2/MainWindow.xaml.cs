@@ -29,43 +29,25 @@ namespace Morabaraba_2
         string tmpPlayer = "CW";
         bool flag = false;
         Player player; //= new Player(p1Cows, p2Cows);
-        SolidColorBrush cowcolor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-        //Each of the characterd represent a space on the game board, and will turn Yellow or Blue depending on the player value
-        char A1, A4, A7, B2, B4, B6, C3, C4, C5, D1, D2, D3, D5, D6, D7, E3, E4, E5, F2, F4, F6, G1, G4, G7 = 'B';
-        char playerY = 'Y';
-        char playerB = 'B';
         string move = "";
         string movefrom = "";
         string hit = "";
+        int barHeightY, barHeightB;
+        bool flagMove = false; 
         public MainWindow()
         {
             InitializeComponent();
             //get input from user 
             ///Placing
             ///
+            outL.Content = getP(tmpPlayer) + " Place your cow!";
+            barHeightB = 120;
+            barHeightY = 120;
             player = new Player(blueCows, yellowCows);
-            MessageBox.Show("Player 1: Red\nPlayer 2: Blue");
-            string placemsg = "Where would you like to place your cow?";
-            string placeerror = "Invalid selection, please click on empty space";
-
-            ///Moving
-            string movemsg1 = "Which cow would you like to move?";
-            string movemsg2 = "Where would you like to place your cow?";
-            string moveerror1 = "Invalid selection, please choose own cow";
-            string moveerror2 = "Invalid selection, please click on empty space";
-            //MessageBox.Show("jdjd"); //remove 
-
-            ///flying
-            string flymsg1 = "Which cow would you like to fly?";
-            string flysg2 = "Where would you like to land your cow?";
-            string flyerror1 = "Invalid selection, please choose own cow";
-            string flyerror2 = "Invalid selection, please click on empty space";
-
+            MessageBox.Show("Player 1: Blue\nPlayer 2: Yellow");
            // startPlaying();
         }
-        // Red = CW
-        // Blue = CB
-        // Black = Blank
+       
         public bool isvalidcowtomove(string pos, string player)// checks if player is trying to move their own cow
         {
             if (player == "CW")
@@ -107,7 +89,7 @@ namespace Morabaraba_2
                 yellowplayer.Add(pos); //add pos to the list of possition played by yellowplayer
                 allcowpos.Add(pos);    //add pos to the list of played possitions by both players
                 yellowCows--;          //decrease yellow cows at hand after plasing
-
+                if (!flagMove) { barHeightY = (barHeightY - 10); borderY.Height = barHeightY; }
                 if (player == "CB")
                 {
 
@@ -239,7 +221,7 @@ namespace Morabaraba_2
                 blueplayer.Add(pos); //add played pos to the list of all possisioned played by blueplayer
                 allcowpos.Add(pos);//add played pos to the list of all played possition
                 blueCows--; //decrease blue cows at hand after placing
-
+                if (!flagMove) { barHeightB = (barHeightB - 10); borderB.Height = barHeightB; }
                 if (player == "CW")
                 {
 
@@ -568,9 +550,8 @@ namespace Morabaraba_2
             }
             if(blueCows <= 0 && yellowCows <= 0)
             {
-                
-               // MessageBox.Show("time for moving");
-               // player.Play(move, tmpPlayer);
+                flagMove = true;
+                outL.Content = getP(tmpPlayer) + " move your cow to neighbouring position";
                 movecows(move,  tmpPlayer);
 
             }
@@ -611,6 +592,23 @@ namespace Morabaraba_2
               //  playMills();
             }
         } //updateGame ends 
+
+        private string invertP(string p)
+        {
+            if (p == "CW") return "Yellow Player";
+            else if (p == "CB") return "Blue Player";
+            else return "";
+
+        }
+
+        private string getP(string p)
+        {
+            if (p == "CB") return "Yellow Player";
+            else if (p == "CW") return "Blue Player";
+            else return "";
+
+        }
+
         private void a1_MouseDown(object sender, MouseButtonEventArgs e)
         {
 

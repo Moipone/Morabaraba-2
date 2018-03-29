@@ -11,30 +11,30 @@
             <StackPanel x:Name="gameP" HorizontalAlignment="Left" Height="198" Margin="157,42,0,0" VerticalAlignment="Top" Width="189" OpacityMask="Black" Cursor="Arrow">
                 <Image x:Name="Background_jpg" Margin="0,0,-3,0" Source="Background.jpg" Stretch="Fill" Height="194" OpacityMask="Black" Cursor="Arrow"/>
             </StackPanel>
-            <Ellipse x:Name="a1" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="156,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="g7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="334,219,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="g4" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="242,220,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="g1" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="156,220,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="f6" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="302,191,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="f4" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="242,191,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="f2" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="180,191,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="e5" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="277,165,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="e4" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="242,166,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="e3" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="207,166,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="d7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="333,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="d6" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="305,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="d5" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="276,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="d3" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="207,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="d2" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="180,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="d1" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="156,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="c5" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="276,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="c4" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="242,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="c3" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="207,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="b6" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="302,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="b4" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="242,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="b2" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="179,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="a7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="330,41,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
-            <Ellipse x:Name="a4" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="242,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand"/>
+            <Ellipse x:Name="a1" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="156,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="a1_MouseDown" />
+            <Ellipse x:Name="g7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="334,219,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="g7_MouseDown"/>
+            <Ellipse x:Name="g4" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="242,220,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="g4_MouseDown"/>
+            <Ellipse x:Name="g1" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="156,220,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="g1_MouseDown"/>
+            <Ellipse x:Name="f6" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="302,191,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="f6_MouseDown"/>
+            <Ellipse x:Name="f4" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="242,191,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="f4_MouseDown"/>
+            <Ellipse x:Name="f2" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="180,191,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="f2_MouseDown"/>
+            <Ellipse x:Name="e5" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="277,165,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="e5_MouseDown"/>
+            <Ellipse x:Name="e4" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="242,166,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="e4_MouseDown"/>
+            <Ellipse x:Name="e3" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="207,166,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="e3_MouseDown"/>
+            <Ellipse x:Name="d7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="333,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="d7_MouseDown"/>
+            <Ellipse x:Name="d6" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="305,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="d6_MouseDown"/>
+            <Ellipse x:Name="d5" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="276,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="d5_MouseDown"/>
+            <Ellipse x:Name="d3" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="207,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="d3_MouseDown"/>
+            <Ellipse x:Name="d2" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="180,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="d2_MouseDown"/>
+            <Ellipse x:Name="d1" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="156,128,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="d1_MouseDown"/>
+            <Ellipse x:Name="c5" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="276,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="c5_MouseDown"/>
+            <Ellipse x:Name="c4" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="242,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="c4_MouseDown"/>
+            <Ellipse x:Name="c3" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="207,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="c3_MouseDown"/>
+            <Ellipse x:Name="b6" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="302,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="b6_MouseDown"/>
+            <Ellipse x:Name="b4" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="242,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="b4_MouseDown"/>
+            <Ellipse x:Name="b2" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="179,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="b2_MouseDown"/>
+            <Ellipse x:Name="a7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="330,41,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="a7_MouseDown"/>
+            <Ellipse x:Name="a4" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="242,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="a4_MouseDown"/>
             <Border x:Name="borderB" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="120" Margin="126,78,0,0" VerticalAlignment="Top" Width="7" Background="#FF0D1A9E" RenderTransformOrigin="0.5,0.5">
                 <Border.RenderTransform>
                     <TransformGroup>
