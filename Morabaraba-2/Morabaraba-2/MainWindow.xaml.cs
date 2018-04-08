@@ -21,25 +21,29 @@ namespace Morabaraba_2
     public partial class MainWindow : Window
     {
         //global variables 
-        public int blueCows = 5; //initial number of cows for each player 
-        public int yellowCows = 5;
+        public int blueCows = 3; //initial number of cows for each player 
+        public int yellowCows = 3;
         List<string> blueplayer = new List<string> { };// list of where blue cows are
         List<string> yellowplayer = new List<string> { };// list of where yellow cows a
         List<string> allcowpos = new List<string> { };
         string tmpPlayer = "CW";
         bool flag = false;
+        public int drawcounter = 40;
         Player player; //= new Player(p1Cows, p2Cows);
         string move = "";
         string movefrom = "";
         string hit = "";
         int barHeightY, barHeightB;
-        bool flagMove = false; 
+        bool flagMove = false;
+        bool flagFly = false;
+        string rules = "";
         public MainWindow()
         {
             InitializeComponent();
             //get input from user 
             ///Placing
             ///
+            MessageBox.Show(rules);
             outL.Content = getP(tmpPlayer) + " Place your cow!";
             barHeightB = 120;
             barHeightY = 120;
@@ -47,7 +51,20 @@ namespace Morabaraba_2
             MessageBox.Show("Player 1: Blue\nPlayer 2: Yellow");
            // startPlaying();
         }
-       
+
+        public bool isvalidcowtofly(string pos, string player)// checks if player is trying to move their own cow
+        {
+            if (player == "CW")
+            {
+                return blueplayer.Contains(pos); //checks if cow belongs to player
+            }
+            if (player == "CB")
+            {
+                return yellowplayer.Contains(pos); //checks if cow belongs to player
+            }
+            return false;
+        }
+
         public bool isvalidcowtomove(string pos, string player)// checks if player is trying to move their own cow
         {
             if (player == "CW")
@@ -577,10 +594,76 @@ namespace Morabaraba_2
                  }
              }*/
         //Clean up this code
-        public void startPlayingMove()
+
+        public void startPlayingFly()
         {
 
-            if (blueCows > 0 || yellowCows > 0) //==1
+            if (blueCows > 0 || yellowCows > 0)
+            {
+                if (move.Length == 0)
+                {
+                    MessageBox.Show("Please select where you'd like to play");
+                    //continue;
+                }
+                if (tmpPlayer == "CW")
+                {
+                    player.Play(move, tmpPlayer);
+                    updateBoardWhite(move, tmpPlayer);
+                    // tmpPlayer = "CB";
+                }
+                else
+                {
+                    player.Play(move, tmpPlayer);
+                    //player.accountForMill2();
+                    updateBoardBlack(move, tmpPlayer);
+                    //tmpPlayer = "CW";
+                }
+                string board = player.board.ToString();
+            }
+            if (blueCows <= 0 && yellowCows <= 0)
+            {
+                if (blueplayer.Count() == 3 && yellowplayer.Count() == 3)  //if all players have 3 cows...fly cows
+                {
+                    if (drawcounter == 0)
+                    {
+                        MessageBox.Show("Game Over /n Its a Draw");
+                    }
+                    else
+                    {
+                        outL.Content = getP(tmpPlayer) + " fly your cow to any position";
+                        flycows(move, tmpPlayer);
+                        drawcounter--;
+                    }
+
+
+                }
+                else
+                {
+                    if (tmpPlayer == "CW" && blueplayer.Count() == 3)
+                    {
+                        outL.Content = getP(tmpPlayer) + " fly your cow to any position";
+                        flycows(move, tmpPlayer);
+                    }
+                    if (tmpPlayer == "CB" && yellowplayer.Count() == 3)
+                    {
+                        outL.Content = getP(tmpPlayer) + " fly your cow to any position";
+                        flycows(move, tmpPlayer);
+                    }
+
+                }
+
+            }
+        }
+        public void startPlayingMove()
+        {
+            if (blueplayer.Count() == 3 && yellowplayer.Count() == 3)
+            {
+                flagFly = true;
+                outL.Content = getP(tmpPlayer) + " fly your cow to any position";
+                startPlayingFly();
+            }
+
+            else if (blueCows > 0 || yellowCows > 0) //==1
             {
                 if (tmpPlayer == "CW" && flagMove)
                 {
@@ -605,10 +688,40 @@ namespace Morabaraba_2
                 }
                 //string board = player.board.ToString();
             }
-            if (blueCows <= 0 && yellowCows <= 0)
+            else if (blueCows <= 0 && yellowCows <= 0)
             {
                 flagMove = true;
                 movecows(move, tmpPlayer);
+            }
+        }
+
+        public void flycows(string from, string player)
+        {
+            if (isvalidcowtofly(from, player) == true)
+            {
+                string to = from;
+                updateBoardBlank(from); // selected cow to be moved back to blank
+                //allcowpos.Remove(from); //removes cow all from played possition list
+                if (player == "CB")
+                {
+                    yellowCows++; //gives yellow player a cow to place anywhere
+                    startPlaying();
+                    updateBoardBlack(to, player);
+                    allcowpos.Remove(from); //removes cow all from played possition list
+                    yellowplayer.Remove(from); //removes cow from yellowplayes list
+                }
+                if (player == "CW")
+                {
+                    blueCows++; //gives blue player a cow to place anywhere
+                    startPlaying();
+                    updateBoardWhite(to, player);
+                    allcowpos.Remove(from); //removes cow all from played possition list
+                    blueplayer.Remove(from); //removes cow from yellowplayes list
+                }
+            }
+            else
+            {
+                // MessageBox.Show("you can only move your own cow");
             }
         }
 
@@ -640,11 +753,13 @@ namespace Morabaraba_2
             if(blueCows <= 0 && yellowCows <= 0)
             {
                 flagMove = true;
-                outL.Content = getP(tmpPlayer) + " move your cow to neighbouring position";
+                if (!flagFly) outL.Content = getP(tmpPlayer) + " move your cow to neighbouring position";
                 movecows(move,  tmpPlayer);
 
             }
         }
+
+
         private void a1_Click(object sender, RoutedEventArgs e)
         {
            // MessageBox.Show("jdjd"); //remove
@@ -656,6 +771,7 @@ namespace Morabaraba_2
         }
         private void updateGame(string pos)
         {
+            if (!flagMove && !flagFly) { outL.Content = invertP(tmpPlayer) + " Place your cow"; } //else { outL.Content = invertP(tmpPlayer) + "Move your cow to neighbouring position"; }
             hit = pos;
             if (flag)
             {
@@ -677,7 +793,7 @@ namespace Morabaraba_2
             if (!flag)
             {
                 move = pos;
-                if (!flagMove) { startPlaying(); } else if (flagMove) { startPlayingMove(); }
+                if (flagFly) startPlayingFly();  else if (flagMove)  startPlayingMove();  else  startPlaying();  
                 //  playMills();
             }
         } //updateGame ends 
