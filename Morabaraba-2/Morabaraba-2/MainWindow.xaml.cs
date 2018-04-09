@@ -42,6 +42,10 @@ namespace Morabaraba_2
         //char playerB = 'B';
         string move = "";
         string hit = "";
+        List<string> neighbours = new List<string>();
+        string tmpPos = "";
+        bool tmpFlag = false;  //controls the flow of the game
+        int k = 0, z = 0;
         // Fix re-forming of mills 
         public MainWindow()
         {
