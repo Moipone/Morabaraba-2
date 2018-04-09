@@ -46,6 +46,11 @@ namespace Morabaraba_2
         //char playerB = 'B';
         string move = "";
         string hit = "";
+        List<string> neighbours = new List<string>();
+        string tmpPos = "";
+        bool tmpFlag = false;  //controls the flow of the game
+        int k = 0, z = 0;
+        int t = 0;
         // Fix re-forming of mills 
         public MainWindow()
         {
@@ -325,6 +330,85 @@ namespace Morabaraba_2
                 updateBoardBlank(positions[i]);
             }
         }
+
+        public void startShifting(string pos)
+        {
+            moveTo = pos;
+            //Check if there's no cows left to place, check if there's still more than 3 cows on each side to be on moving phase
+            int whitePieces = world.getPlayerPieces(world.getPlayer(world.player1.symbol)).Count;
+            int blackPieces = world.getPlayerPieces(world.getPlayer(world.player2.symbol)).Count;
+
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces > 3) && (blackPieces > 3))
+            {
+                if (world.currentPlayer == "CW") movingPhase();
+
+                else movingPhase();
+
+            }
+            //Flying phase.
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces == 3) && (blackPieces > 3))
+            {
+                world.player1.phase = "Flying";
+                if (world.currentPlayer == "CW") flyingPhase();
+                else movingPhase();
+
+            }
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces > 3) && (blackPieces == 3))
+            {
+                world.player2.phase = "Flying";
+                if (world.currentPlayer == "CW") movingPhase();
+                else flyingPhase();
+
+            }
+            //Both players are now flying
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces == 3) && (blackPieces == 3))
+            {
+                world.player1.phase = "Flying";
+                world.player2.phase = "Flying";
+
+                if (world.currentPlayer == "CW") flyingPhase(); 
+                else flyingPhase();
+                // If no mill has been formed within 20 moves issa draw.
+                if (!world.mill) draw++;
+                if (draw >= 20)
+                {
+                    MessageBox.Show("Draw! both players lose!\n\nWould you like to play again!");
+                }
+
+            }
+            //Re-Calculate number of pieces on the board, to see who now 
+            whitePieces = world.getPlayerPieces(world.getPlayer(world.player1.symbol)).Count;
+            blackPieces = world.getPlayerPieces(world.getPlayer(world.player2.symbol)).Count;
+
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces < 3))
+            {
+                // White loses
+                MessageBox.Show("White loses!, would you like to play again ?");
+                world = new World(new Player("CW"), new Player("CB"));
+                clearBoard();
+                world.currentPlayer = "CW";
+                UpdateGUI();
+                return;
+            }
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (blackPieces < 3))
+            {
+                // Black loses
+                MessageBox.Show("Black loses!, would you like to play again ?");
+                world = new World(new Player("CW"), new Player("CB"));
+                world.currentPlayer = "CW";
+
+                clearBoard();
+                UpdateGUI();
+                return;
+
+            }
+        }
+
+        private void flyingPhase() //Created by other contributer
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Method makes the colouring effects on the gui
         /// </summary>
@@ -756,8 +840,159 @@ namespace Morabaraba_2
             //MessageBox.Show("a1"); //remove
         }
 
+        public void ControlMills()
+        {
+            if (world.mill)
+            {
+                tmpFlag = true;
+                if (tmpFlag)
+                {
+                    MessageBox.Show("Which enemy would you like to destroy");
+                    shift = true;
+                    return;
+                }
 
-        int t = 0;
+            }
+            world.switchPlayer();
+            UpdateGUI();
+            t++;
+            switchFlag = false;
+        }
+
+        public void RunMoving()
+        {
+            //Go through neighbour cells to see if there's an available position  
+            if (neighbours.Contains(moveTo))
+            {
+
+                for (int i = 0; i < neighbours.Count; i++)
+                {
+                    Tile tl = world.board.getTile(neighbours[i]);
+                    Tile two = world.board.getTile(tmpPos);
+                    if (two.cond == "Blank")
+                    {
+                        MessageBox.Show("You can't move an empty piece");
+                        flag = true;
+                        return;
+                    }
+                    if (two.cond != world.currentPlayer)
+                    {
+                        MessageBox.Show("You can't move your oponents piece\nPlease move your own piece!");
+                        flag = true;
+                        return;
+                    }
+
+                    if (tl.cond == "blank" && moveTo == neighbours[i] && two.cond != "blank")
+                    {
+
+
+                        //Remove the old piece from the board
+                        world.RemovePiece(tmpPos);
+                        //Remove the broken mill of the old piece
+                        world.RemoveBrokenMill(tmpPos, world.getPlayer(world.currentPlayer));
+                        //Update board
+                        updateBoardBlank(tmpPos);
+                        if (world.currentPlayer == "CW")
+                        {
+                            updateBoardWhite(moveTo, "CW");
+                            //UpdateGUI();
+                        }
+                        else
+                        {
+                            updateBoardBlack(moveTo, "CB");
+                            //UpdateGUI();
+                        }
+                        world.addPiece(moveTo, world.getPlayer(world.currentPlayer));
+                        //if the last piece was destroyed, and a player plays the same pos, remove that pos from last 
+                        if (world.getPlayer(world.currentPlayer).LastPosPlayed.Contains(moveTo))
+                            world.getPlayer(world.currentPlayer).LastPosPlayed.Remove(moveTo);
+                        //Add the new position to player
+                        world.getPlayer(world.currentPlayer).LastPosPlayed.Add(moveTo);
+                        //Check if a new mill has been formed.
+                        world.isMill();
+
+                        ControlMills();
+                        return;
+                    }
+                }
+
+            }
+            else
+            {
+                int indx = world.getPlayer(world.currentPlayer).LastPosPlayed.Count - 1;
+                MessageBox.Show(string.Format("To which adjacent, free space would you like to move {0} ? ", world.getPlayer(world.currentPlayer).LastPosPlayed[indx]));
+
+                return;
+            }
+        }
+
+        public void SwitchControl()
+        {
+            //This check controls the moving, once a piece has been selected, jump out of this method and when you come back that'll be your move to pos
+            if (!switchFlag)
+            {
+                Tile tile = world.board.getTile(moveTo);
+                if (tile.cond == "blank")
+                {
+                    MessageBox.Show("You can't move a blank spot");
+                    flag = true;
+                    return;
+                }
+                if (tile.cond != world.currentPlayer)
+                {
+                    MessageBox.Show("You can't move your opponents piece!!!");
+                    flag = true;
+                    return;
+                }
+                MessageBox.Show(string.Format("Where would you like to move {0}?", moveTo));
+                switchFlag = true;
+                neighbours = world.board.getNeighbourCells(moveTo);
+                tmpPos = moveTo;
+                return;
+            }
+            if (t == 100) t = 1;
+            RunMoving();
+        }
+
+        public void movingPhase()
+        {
+            if (fly) return;
+            // Check if it's time to shoot a piece
+            if (tmpFlag)
+            {
+                //The bools here control the flow of the shifting phase
+                shift = false;
+                tmpFlag = false;
+                updateGameMove(moveTo);
+                //Flag is used a a check within to see if a player wasn't removed, then it must come back and try again
+                if (flag)
+                {
+                    MessageBox.Show("That's invalid move, please shoot another enemy piece");
+                    shift = true;
+                    tmpFlag = true;
+                    return;
+                }
+                shift = true;
+                flag = false;
+                return;
+            }
+            if (t == 0)
+            {
+                MessageBox.Show("No more cows to place, please select the cow you'd like to move");
+                t++;
+                world.player1.phase = "moving";
+                world.player2.phase = "moving";
+
+                shift = true;
+                return;
+            }
+            SwitchControl();
+
+
+
+        }
+
+
         //This code runs the game, and calls various methods to make the game run
         public void startPlaying()
         {
@@ -785,19 +1020,22 @@ namespace Morabaraba_2
             string board = world.board.ToString();
 
         }
-      
+
+       
         public void startShifting(string pos)
         {
 
         }
-        private void a1_MouseDown(object sender, MouseButtonEventArgs e)
-        {
 
 
-            startShifting("a1");
-            updateGame("a1");
-            //MessageBox.Show("a1"); //remove
-        }
+        //private void a1_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+
+
+        //    startShifting("a1");
+        //    updateGame("a1");
+        //    //MessageBox.Show("a1"); //remove
+        //}
 
         private void a4_MouseDown(object sender, MouseButtonEventArgs e)
         {
