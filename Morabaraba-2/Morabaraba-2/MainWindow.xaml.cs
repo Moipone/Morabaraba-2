@@ -604,6 +604,46 @@ namespace Morabaraba_2
             }
 
         }
+        public void flyingHelper()
+        {
+            if (k == 0 && world.currentPlayer == "CB" && world.getPlayer("CB").phase.ToLower() == "flying")
+            {
+                MessageBox.Show(string.Format("{0} Cows can now fly!, please select the cow you'd like to move", world.currentPlayer));
+                k++;
+                shift = true;
+                //fly = true;
+                return;
+            }
+            if (z == 0 && world.currentPlayer == "CW" && world.getPlayer("CW").phase.ToLower() == "flying")
+            {
+                MessageBox.Show(string.Format("{0} Cows can now fly!, please select the cow you'd like to move", world.currentPlayer));
+                z++;
+                shift = true;
+                //fly = true;
+                return;
+            }
+            if (world.getPlayer("CW").phase == "flying" && world.getPlayer("CB").phase == "flying")
+            {
+                fly = true;
+            }
+
+            //This check controls the moving, once a piece has been selected, jump out of this method and when you come back that'll be your move to pos
+            if (!switchFlag)
+            {
+                Tile tile = world.board.getTile(moveTo);
+                if (tile.cond == "blank")
+                {
+                    MessageBox.Show("You can't move a blank spot");
+                    flag = true;
+                    return;
+                }
+                MessageBox.Show(string.Format("Where would you like to move {0}?", moveTo));
+                switchFlag = true;
+
+                tmpPos = moveTo;
+                return;
+            }
+        }
 
         private void a1_MouseDown(object sender, MouseButtonEventArgs e)
         {
