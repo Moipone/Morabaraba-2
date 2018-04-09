@@ -326,6 +326,85 @@ namespace Morabaraba_2
                 updateBoardBlank(positions[i]);
             }
         }
+
+        public void startShifting(string pos)
+        {
+            moveTo = pos;
+            //Check if there's no cows left to place, check if there's still more than 3 cows on each side to be on moving phase
+            int whitePieces = world.getPlayerPieces(world.getPlayer(world.player1.symbol)).Count;
+            int blackPieces = world.getPlayerPieces(world.getPlayer(world.player2.symbol)).Count;
+
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces > 3) && (blackPieces > 3))
+            {
+                if (world.currentPlayer == "CW") movingPhase();
+
+                else movingPhase();
+
+            }
+            //Flying phase.
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces == 3) && (blackPieces > 3))
+            {
+                world.player1.phase = "Flying";
+                if (world.currentPlayer == "CW") flyingPhase();
+                else movingPhase();
+
+            }
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces > 3) && (blackPieces == 3))
+            {
+                world.player2.phase = "Flying";
+                if (world.currentPlayer == "CW") movingPhase();
+                else flyingPhase();
+
+            }
+            //Both players are now flying
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces == 3) && (blackPieces == 3))
+            {
+                world.player1.phase = "Flying";
+                world.player2.phase = "Flying";
+
+                if (world.currentPlayer == "CW") flyingPhase(); 
+                else flyingPhase();
+                // If no mill has been formed within 20 moves issa draw.
+                if (!world.mill) draw++;
+                if (draw >= 20)
+                {
+                    MessageBox.Show("Draw! both players lose!\n\nWould you like to play again!");
+                }
+
+            }
+            //Re-Calculate number of pieces on the board, to see who now 
+            whitePieces = world.getPlayerPieces(world.getPlayer(world.player1.symbol)).Count;
+            blackPieces = world.getPlayerPieces(world.getPlayer(world.player2.symbol)).Count;
+
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces < 3))
+            {
+                // White loses
+                MessageBox.Show("White loses!, would you like to play again ?");
+                world = new World(new Player("CW"), new Player("CB"));
+                clearBoard();
+                world.currentPlayer = "CW";
+                UpdateGUI();
+                return;
+            }
+            if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (blackPieces < 3))
+            {
+                // Black loses
+                MessageBox.Show("Black loses!, would you like to play again ?");
+                world = new World(new Player("CW"), new Player("CB"));
+                world.currentPlayer = "CW";
+
+                clearBoard();
+                UpdateGUI();
+                return;
+
+            }
+        }
+
+        private void flyingPhase() //Created by other contributer
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Method makes the colouring effects on the gui
         /// </summary>
@@ -794,11 +873,14 @@ namespace Morabaraba_2
             string board = world.board.ToString();
 
         }
-      
+
+       
         public void startShifting(string pos)
         {
 
         }
+
+
         //private void a1_MouseDown(object sender, MouseButtonEventArgs e)
         //{
 
