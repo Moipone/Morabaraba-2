@@ -700,6 +700,34 @@ namespace Morabaraba_2
             }
         }
 
+        public void SwitchControl()
+        {
+            //This check controls the moving, once a piece has been selected, jump out of this method and when you come back that'll be your move to pos
+            if (!switchFlag)
+            {
+                Tile tile = world.board.getTile(moveTo);
+                if (tile.cond == "blank")
+                {
+                    MessageBox.Show("You can't move a blank spot");
+                    flag = true;
+                    return;
+                }
+                if (tile.cond != world.currentPlayer)
+                {
+                    MessageBox.Show("You can't move your opponents piece!!!");
+                    flag = true;
+                    return;
+                }
+                MessageBox.Show(string.Format("Where would you like to move {0}?", moveTo));
+                switchFlag = true;
+                neighbours = world.board.getNeighbourCells(moveTo);
+                tmpPos = moveTo;
+                return;
+            }
+            if (t == 100) t = 1;
+            RunMoving();
+        }
+
         //This code runs the game, and calls various methods to make the game run
         public void startPlaying()
         {
