@@ -349,6 +349,22 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
                 updateBoardBlank(positions[i]);
             }
         }
+        public void computedraw()
+        {
+            int counter = 0;
+            List<string> positions = world.board.getPositions().ToList();
+            for (int i = 0; i < positions.Count; i++)
+            {
+                Tile t = world.board.getTile(positions[i]);
+                if (t.cond == "blank") counter++;
+            }
+            if(counter == 0)
+            {
+                MessageBox.Show("draw");
+                world = new World(new Player("CW"), new Player("CB"));
+                clearBoard();
+            }
+        }
 
         public void startShifting(string pos)
         {
@@ -379,9 +395,10 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
                 else flyingPhase();
 
             }
-            //Both players are now flying
+            //Both players are now flying.......................................................
             if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces == 3) && (blackPieces == 3))
             {
+
                 world.player1.phase = "Flying";
                 world.player2.phase = "Flying";
 
@@ -1024,6 +1041,7 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             if (world.player1.CowLives > 0 || world.player2.CowLives > 0 || t > 1)
             {
                 // if (world.player1.CowLives == 0 && world.player2.CowLives == 0)
+                computedraw();
                 if (world.currentPlayer == "CW")
                 {
                     helperCheck1();
