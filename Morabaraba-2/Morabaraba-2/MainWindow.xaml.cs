@@ -633,6 +633,73 @@ namespace Morabaraba_2
             switchFlag = false;
         }
 
+        public void RunMoving()
+        {
+            //Go through neighbour cells to see if there's an available position  
+            if (neighbours.Contains(moveTo))
+            {
+
+                for (int i = 0; i < neighbours.Count; i++)
+                {
+                    Tile tl = world.board.getTile(neighbours[i]);
+                    Tile two = world.board.getTile(tmpPos);
+                    if (two.cond == "Blank")
+                    {
+                        MessageBox.Show("You can't move an empty piece");
+                        flag = true;
+                        return;
+                    }
+                    if (two.cond != world.currentPlayer)
+                    {
+                        MessageBox.Show("You can't move your oponents piece\nPlease move your own piece!");
+                        flag = true;
+                        return;
+                    }
+
+                    if (tl.cond == "blank" && moveTo == neighbours[i] && two.cond != "blank")
+                    {
+
+
+                        //Remove the old piece from the board
+                        world.RemovePiece(tmpPos);
+                        //Remove the broken mill of the old piece
+                        world.RemoveBrokenMill(tmpPos, world.getPlayer(world.currentPlayer));
+                        //Update board
+                        updateBoardBlank(tmpPos);
+                        if (world.currentPlayer == "CW")
+                        {
+                            updateBoardWhite(moveTo, "CW");
+                            //UpdateGUI();
+                        }
+                        else
+                        {
+                            updateBoardBlack(moveTo, "CB");
+                            //UpdateGUI();
+                        }
+                        world.addPiece(moveTo, world.getPlayer(world.currentPlayer));
+                        //if the last piece was destroyed, and a player plays the same pos, remove that pos from last 
+                        if (world.getPlayer(world.currentPlayer).LastPosPlayed.Contains(moveTo))
+                            world.getPlayer(world.currentPlayer).LastPosPlayed.Remove(moveTo);
+                        //Add the new position to player
+                        world.getPlayer(world.currentPlayer).LastPosPlayed.Add(moveTo);
+                        //Check if a new mill has been formed.
+                        world.isMill();
+
+                        ControlMills();
+                        return;
+                    }
+                }
+
+            }
+            else
+            {
+                int indx = world.getPlayer(world.currentPlayer).LastPosPlayed.Count - 1;
+                MessageBox.Show(string.Format("To which adjacent, free space would you like to move {0} ? ", world.getPlayer(world.currentPlayer).LastPosPlayed[indx]));
+
+                return;
+            }
+        }
+
         //This code runs the game, and calls various methods to make the game run
         public void startPlaying()
         {
