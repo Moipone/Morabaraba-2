@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace Morabaraba_2
 {
     /// <summary> //git
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainWindow.aml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -46,10 +46,7 @@ namespace Morabaraba_2
         //char playerB = 'B';
         string move = "";
         string hit = "";
-        List<string> neighbours = new List<string>();
-        string tmpPos = "";
-        bool tmpFlag = false;  //controls the flow of the game
-        int k = 0, z = 0;
+       
         int t = 0;
         // Fix re-forming of mills 
         public MainWindow()
@@ -60,8 +57,30 @@ namespace Morabaraba_2
             ///
             world.currentPlayer = tmpPlayer;
             UpdateGUI();
-            MessageBox.Show("Player 1: Blue\nPlayer 2: Yellow");
+       
 
+string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	Each player has 12 pieces known as cows.Player 1 has dark cow and Player 2 has light cows" + "\n•	Player one moves first" + "\n•	Each turn consists of placing cows on the board"
+                
+                + "\n•	Three cows on any line creates a mill" 
+                + "\n•	Whenever a player creates a mill they are to shoot any cow of the opponent accept cows in a mill."
+                + "\n•	One cow can be short per turn even if a turn creates more than one mill"
+                                                                                                                          
+                 + "Stage 2: Cow moving"
+                 + "\n•	After players run out of cows to place, each turn consists of moving cows to an empty adjacent intersection. "
+                 + "\n•	A mill allows a cow that is not in a mill to be short, unless all cows are in a mill"
+                 + "\n•	A mill can be broken and remade by moving cows back and forth."
+                 + "\n•	A mill broken to make another mill can only be remade after the next turn  "
+                                                                                                                                             
+                 + "\nStage 3: flying"
+                 + "\n•	Whenever a player has three cows left, the player’s cows are allowed to fly to any intersection not just the adjacent ones."
+                 + "\nFinishing the game"
+                 + "\n•	A player wins when the opponent cannot make a move "
+                 + "\n•	A player wins when the opponent is left with 2 cows "
+                 + "\n•	When both players have three cows, they are allowed ten turns. If no shooting takes place it is declared a draw."
+                 + "\n•	One that cheats loses the game";
+            MessageBox.Show(rules);                                                                                                                                        
+            MessageBox.Show("Player 1: Blue\nPlayer 2: Yellow");
+            
 
         }
         public void UpdateGUI()
@@ -404,9 +423,65 @@ namespace Morabaraba_2
             }
         }
 
-        private void flyingPhase() //Created by other contributer
+    
+
+        public void flyingPhase() //1
         {
-            throw new NotImplementedException();
+
+            // Check if it's time to shoot a piece
+            if (tmpFlag)
+            {
+                //The bools here control the flow of the shifting phase
+                shift = false;
+                tmpFlag = false;
+                updateGameMove(moveTo);
+                //Flag is used a a check within to see if a player wasn't removed, then it must come back and try again
+                if (flag)
+                {
+                    MessageBox.Show("That's invalid move, please shoot another enemy piece");
+                    shift = true;
+                    tmpFlag = true;
+                    return;
+                }
+                shift = true;
+                flag = false;
+                return;
+            }
+            //Helper method to compute which player is in which phase
+            flyingHelper();
+            if (t == 100) t = 1;
+
+            //Get the pos and check if its an available position  
+
+            Tile tl = world.board.getTile(moveTo);
+            Tile two = world.board.getTile(tmpPos);
+            if (two.cond == "Blank")
+            {
+                MessageBox.Show("You can't move an empty piece");
+                flag = true;
+                return;
+            }
+            if (two.cond != world.currentPlayer)
+            {
+                MessageBox.Show("You can't move your oponents piece\nPlease move your own piece!");
+                flag = true;
+                return;
+            }
+            if (tl.cond == "blank" && moveTo == tl.pos && two.cond != "blank")
+            {
+                // Update the board and game 
+                updateFlying();
+
+
+
+            }
+            else
+            {
+                int indx = world.getPlayer(world.currentPlayer).LastPosPlayed.Count - 1;
+                MessageBox.Show(string.Format("To which free space would you like to move {0} ? ", world.getPlayer(world.currentPlayer).LastPosPlayed[indx]));
+
+                return;
+            }
         }
 
         /// <summary>
@@ -773,64 +848,7 @@ namespace Morabaraba_2
             return;
 
         }
-        public void flyingPhase()
-        {
-
-            // Check if it's time to shoot a piece
-            if (tmpFlag)
-            {
-                //The bools here control the flow of the shifting phase
-                shift = false;
-                tmpFlag = false;
-                updateGameMove(moveTo);
-                //Flag is used a a check within to see if a player wasn't removed, then it must come back and try again
-                if (flag)
-                {
-                    MessageBox.Show("That's invalid move, please shoot another enemy piece");
-                    shift = true;
-                    tmpFlag = true;
-                    return;
-                }
-                shift = true;
-                flag = false;
-                return;
-            }
-            //Helper method to compute which player is in which phase
-            flyingHelper();
-            if (t == 100) t = 1;
-
-            //Get the pos and check if its an available position  
-
-            Tile tl = world.board.getTile(moveTo);
-            Tile two = world.board.getTile(tmpPos);
-            if (two.cond == "Blank")
-            {
-                MessageBox.Show("You can't move an empty piece");
-                flag = true;
-                return;
-            }
-            if (two.cond != world.currentPlayer)
-            {
-                MessageBox.Show("You can't move your oponents piece\nPlease move your own piece!");
-                flag = true;
-                return;
-            }
-            if (tl.cond == "blank" && moveTo == tl.pos && two.cond != "blank")
-            {
-                // Update the board and game 
-                updateFlying();
-
-
-
-            }
-            else
-            {
-                int indx = world.getPlayer(world.currentPlayer).LastPosPlayed.Count - 1;
-                MessageBox.Show(string.Format("To which free space would you like to move {0} ? ", world.getPlayer(world.currentPlayer).LastPosPlayed[indx]));
-
-                return;
-            }
-        }
+       
         private void a1_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
@@ -1022,12 +1040,7 @@ namespace Morabaraba_2
         }
 
        
-        public void startShifting(string pos)
-        {
-
-        }
-
-
+       
         //private void a1_MouseDown(object sender, MouseButtonEventArgs e)
         //{
 
