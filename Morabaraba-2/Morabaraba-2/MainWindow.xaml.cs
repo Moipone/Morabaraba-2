@@ -46,6 +46,7 @@ namespace Morabaraba_2
         string tmpPos = "";
         bool tmpFlag = false;  //controls the flow of the game
         int k = 0, z = 0;
+        int t = 0;
         // Fix re-forming of mills 
         public MainWindow()
         {
@@ -613,8 +614,25 @@ namespace Morabaraba_2
             //MessageBox.Show("a1"); //remove
         }
 
+        public void ControlMills()
+        {
+            if (world.mill)
+            {
+                tmpFlag = true;
+                if (tmpFlag)
+                {
+                    MessageBox.Show("Which enemy would you like to destroy");
+                    shift = true;
+                    return;
+                }
 
-        int t = 0;
+            }
+            world.switchPlayer();
+            UpdateGUI();
+            t++;
+            switchFlag = false;
+        }
+
         //This code runs the game, and calls various methods to make the game run
         public void startPlaying()
         {
