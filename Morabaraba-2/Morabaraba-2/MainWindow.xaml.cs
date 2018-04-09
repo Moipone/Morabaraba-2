@@ -545,6 +545,65 @@ namespace Morabaraba_2
             }
 
         }
+        private void updateGameMove(string pos) //This is anothe method that's a backbone of the game. It validates co-ordinates and implements shooting
+        {
+            //If you're in the shifting/flying phase don't make use of this method
+            if (shift) return;
+
+            hit = pos;
+
+            if (world.mill)
+            {
+                // player.SetEnemyPos(hit);
+                string enemy = world.board.getTile(hit).cond;
+                if (enemy == "blank")
+                {
+                    MessageBox.Show("You can't destroy a blank spot");
+                    return;
+                }
+
+                if (enemy == world.currentPlayer && enemy != "blank")
+                {
+                    MessageBox.Show("You can't destroy your own player!!!");
+                    MessageBox.Show("Please choose an enemy piece!");
+                    //Something went wrong, redo by attempting again
+                    flag = true;
+                    return;
+                }
+                //Naming of this wasn't great, it basically checks whether there is still pieces that's not in a mill
+                if (!world.isNotAvailablePieces(world.getPlayer(enemy)))
+                {
+
+                    if (world.isInMillPos(hit, world.getPlayer(enemy)))
+                    {
+                        MessageBox.Show("You can't shoot a piece in a mill.\n There are still available pieces to shoot");
+                        //Something went wrong, redo by attempting to shoot another piece
+                        flag = true;
+                        return;
+                    }
+                    //If there's only pieces in mills, then you can shoot those pieces, and it would fall through this clause
+                }
+
+                world.mill = false;
+                world.RemovePiece(hit);
+                //Check to see if a mill has been broken, to recheck
+                world.RemoveBrokenMill(hit, world.getPlayer(world.currentPlayer));
+                updateBoardBlank(hit);
+                switchFlag = false;
+                world.switchPlayer();
+                UpdateGUI();
+                flag = false;
+                return;
+            }
+            if (!world.mill)
+            {
+                move = pos;
+                startPlaying();
+
+                UpdateGUI();
+            }
+
+        }
         private void a1_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
