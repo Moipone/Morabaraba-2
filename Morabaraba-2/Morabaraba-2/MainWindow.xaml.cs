@@ -689,6 +689,64 @@ namespace Morabaraba_2
             return;
 
         }
+        public void flyingPhase()
+        {
+
+            // Check if it's time to shoot a piece
+            if (tmpFlag)
+            {
+                //The bools here control the flow of the shifting phase
+                shift = false;
+                tmpFlag = false;
+                updateGameMove(moveTo);
+                //Flag is used a a check within to see if a player wasn't removed, then it must come back and try again
+                if (flag)
+                {
+                    MessageBox.Show("That's invalid move, please shoot another enemy piece");
+                    shift = true;
+                    tmpFlag = true;
+                    return;
+                }
+                shift = true;
+                flag = false;
+                return;
+            }
+            //Helper method to compute which player is in which phase
+            flyingHelper();
+            if (t == 100) t = 1;
+
+            //Get the pos and check if its an available position  
+
+            Tile tl = world.board.getTile(moveTo);
+            Tile two = world.board.getTile(tmpPos);
+            if (two.cond == "Blank")
+            {
+                MessageBox.Show("You can't move an empty piece");
+                flag = true;
+                return;
+            }
+            if (two.cond != world.currentPlayer)
+            {
+                MessageBox.Show("You can't move your oponents piece\nPlease move your own piece!");
+                flag = true;
+                return;
+            }
+            if (tl.cond == "blank" && moveTo == tl.pos && two.cond != "blank")
+            {
+                // Update the board and game 
+                updateFlying();
+
+
+
+            }
+            else
+            {
+                int indx = world.getPlayer(world.currentPlayer).LastPosPlayed.Count - 1;
+                MessageBox.Show(string.Format("To which free space would you like to move {0} ? ", world.getPlayer(world.currentPlayer).LastPosPlayed[indx]));
+
+                return;
+            }
+        }
         private void a1_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
