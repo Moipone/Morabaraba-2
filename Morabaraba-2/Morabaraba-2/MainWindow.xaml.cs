@@ -464,6 +464,10 @@ namespace Morabaraba_2
             world.currentPlayer = "CB";
 
         }
+        public void restartGame()
+        {
+
+        }
         public void helperCheck2()
         {
             if (world.board.getTile(move).cond != "blank" && !shift)
