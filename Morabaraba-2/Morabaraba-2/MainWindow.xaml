@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Morabaraba_2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Morabaraba" Height="350" Width="525">
     <Grid>
-        <Grid>
+        <Grid HorizontalAlignment="Right" Width="517">
             <StackPanel x:Name="gameP" HorizontalAlignment="Left" Height="198" Margin="157,42,0,0" VerticalAlignment="Top" Width="189" OpacityMask="Black" Cursor="Arrow">
                 <Image x:Name="Background_jpg" Margin="0,0,-3,0" Source="Background.jpg" Stretch="Fill" Height="194" OpacityMask="Black" Cursor="Arrow"/>
             </StackPanel>
-            <Ellipse x:Name="a1" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="156,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="a1_MouseDown" />
+            <Ellipse x:Name="a1" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="156,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="a1_MouseDown"/>
             <Ellipse x:Name="g7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="334,219,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="g7_MouseDown"/>
             <Ellipse x:Name="g4" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="242,220,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="g4_MouseDown"/>
             <Ellipse x:Name="g1" Fill="#FF0B0B0C" HorizontalAlignment="Left" Height="20" Margin="156,220,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="g1_MouseDown"/>
@@ -35,27 +35,56 @@
             <Ellipse x:Name="b2" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="179,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="b2_MouseDown"/>
             <Ellipse x:Name="a7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="330,41,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="a7_MouseDown"/>
             <Ellipse x:Name="a4" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="242,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="a4_MouseDown"/>
-            <Border x:Name="borderB" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="120" Margin="126,78,0,0" VerticalAlignment="Top" Width="7" Background="#FF0D1A9E" RenderTransformOrigin="0.5,0.5">
-                <Border.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-180.117"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Border.RenderTransform>
-            </Border>
-            <Border x:Name="borderY" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="120" Margin="380,80,0,0" VerticalAlignment="Top" Width="7" Background="#FFFBE615" RenderTransformOrigin="0.5,0.5">
-                <Border.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="180.015"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Border.RenderTransform>
-            </Border>
-            <Label x:Name="outL" Content="" HorizontalAlignment="Left" Height="33" Margin="54,261,0,0" VerticalAlignment="Top" Width="425" FontFamily="Colonna MT" FontWeight="Bold" FontSize="16"/>
+            <Label x:Name="outL" Content="Player 1 : " HorizontalAlignment="Left" Height="33" Margin="128,260,0,0" VerticalAlignment="Top" Width="95" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
+            <StackPanel x:Name="p1" Margin="96,71,391,115" Orientation="Vertical">
+                <Ellipse x:Name="A" Fill="#FF0D22F1" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" OpacityMask="Black" HorizontalAlignment="Left" Width="8"/>
+                <Ellipse x:Name="B" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="C" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="D" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="E" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="F" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="G" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="H" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="I" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="J" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="K" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="L" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+            </StackPanel>
+            <StackPanel x:Name="p2" Margin="401,72,87,109" Orientation="Vertical">
+                <Ellipse x:Name="M" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="N" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="O" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="P" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="Q" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="R" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="S" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="T" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="U" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="V" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="W" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+                <Ellipse x:Name="X" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
+            </StackPanel>
+            <Label x:Name="outL_Copy" Content="Player 2 : " HorizontalAlignment="Left" Height="33" Margin="128,286,0,0" VerticalAlignment="Top" Width="95" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
+            <Label Content="A" HorizontalAlignment="Left" Margin="131,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="G" HorizontalAlignment="Left" Margin="131,219,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="F" HorizontalAlignment="Left" Margin="131,184,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="E" HorizontalAlignment="Left" Margin="131,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="D" HorizontalAlignment="Left" Margin="131,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="C" HorizontalAlignment="Left" Margin="131,88,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="B" HorizontalAlignment="Left" Margin="131,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="1" HorizontalAlignment="Left" Margin="156,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="2" HorizontalAlignment="Left" Margin="182,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="3" HorizontalAlignment="Left" Margin="207,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="4" HorizontalAlignment="Left" Margin="242,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="5" HorizontalAlignment="Left" Margin="277,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="6" HorizontalAlignment="Left" Margin="306,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label Content="7" HorizontalAlignment="Left" Margin="329,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label x:Name="player1_Box" Content=" " HorizontalAlignment="Left" Height="33" Margin="223,286,0,0" VerticalAlignment="Top" Width="229" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
+            <Label x:Name="player2_Box" Content="" HorizontalAlignment="Left" Height="33" Margin="223,260,0,0" VerticalAlignment="Top" Width="229" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
+            <Label x:Name="outL_Copy1" Content="B-Pieces:" HorizontalAlignment="Left" Height="33" Margin="1,171,0,0" VerticalAlignment="Top" Width="95" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
+            <Label x:Name="outL_Copy2" Content="Y-Pieces: " HorizontalAlignment="Left" Height="33" Margin="375,177,0,0" VerticalAlignment="Top" Width="95" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
+            <Label x:Name ="ScoreP1_Box" Content="" HorizontalAlignment="Left" Margin="96,171,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label x:Name ="ScoreP2_Box" Content="" HorizontalAlignment="Left" Margin="470,178,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
         </Grid>
 
     </Grid>

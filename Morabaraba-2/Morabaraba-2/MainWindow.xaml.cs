@@ -584,14 +584,14 @@ namespace Morabaraba_2
         {
 
         }
-        private void a1_MouseDown(object sender, MouseButtonEventArgs e)
-        {
+        //private void a1_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
 
 
-            startShifting("a1");
-            updateGame("a1");
-            //MessageBox.Show("a1"); //remove
-        }
+        //    startShifting("a1");
+        //    updateGame("a1");
+        //    //MessageBox.Show("a1"); //remove
+        //}
 
         private void a4_MouseDown(object sender, MouseButtonEventArgs e)
         {
