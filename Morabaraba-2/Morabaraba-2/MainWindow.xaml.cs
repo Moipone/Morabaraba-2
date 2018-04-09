@@ -99,6 +99,7 @@ namespace Morabaraba_2
             }
             return Brushes.Black;
         }
+   
         public void updateBoardBlack(string pos, string player)
         {
             if (isvalidposition(pos, player) == false)
@@ -556,44 +557,8 @@ namespace Morabaraba_2
                 }
             }
         }
-        //Complete this to allow mills to work, by updating the player position
-        /*     public void playMills()
-             {
-                 //Once you found a mill, return from this method.
-                 string[] list1 = player.board.getMillP1();
-                 string[] list2 = player.board.getMillP2();
-                 bool contained = false;
-                 for (int i = 0; i < list1.Length; i++)
-                 {
-                     flag = player.isMill1(list1[i]);
+   
 
-                     //Mill shouldn't already be contained 
-                     string[] mil = player.board.checkMills1(list1[i]);
-                     contained = player.isContainedInMills(mil);
-                     if (flag && !contained)
-                     {
-                         MessageBox.Show("Which enemy would you like to eliminate");
-                         return;
-                         //player.SetEnemyPos(hit);
-                         //player.accountForMill1();
-                     }
-                 }
-                 for (int i = 0; i < list2.Length; i++)
-                 {
-                     flag = player.isMill2(list2[i]);
-                     //Mill shouldn't already be contained 
-                     string[] mil = player.board.checkMills2(list2[i]);
-                     contained = player.isContainedInMills(mil);
-                     if (flag && !contained)
-                     {
-                         MessageBox.Show("Which enemy would you like to eliminate");
-                         return;
-                         //player.SetEnemyPos(hit);
-                         //player.accountForMill2();
-                     }
-                 }
-             }*/
-        //Clean up this code
 
         public void startPlayingFly()
         {
@@ -766,8 +731,7 @@ namespace Morabaraba_2
         }
         private void activeAttack()
         {
-            player.accountForMill1();
-            player.accountForMill2();
+            
         }
         private void updateGame(string pos)
         {

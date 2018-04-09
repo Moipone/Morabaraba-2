@@ -8,7 +8,8 @@ namespace Morabaraba_2
 {
     class Player
     {
-        public int CW = 0, CB = 0;
+        //Start each player with 12 pieces
+        public int CW = 12, CB = 12;
         public string CWStr = "CW", CBStr = "CB";
         public Board board = new Board();
         private string enemyPos = "";
@@ -120,6 +121,7 @@ namespace Morabaraba_2
 
             return board.contains(list);
         }
+
         public bool isMill2(string pos)
         {
             string[] possibleMill = board.checkMills2(pos);
