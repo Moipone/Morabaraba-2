@@ -728,6 +728,45 @@ namespace Morabaraba_2
             RunMoving();
         }
 
+        public void movingPhase()
+        {
+            if (fly) return;
+            // Check if it's time to shoot a piece
+            if (tmpFlag)
+            {
+                //The bools here control the flow of the shifting phase
+                shift = false;
+                tmpFlag = false;
+                updateGameMove(moveTo);
+                //Flag is used a a check within to see if a player wasn't removed, then it must come back and try again
+                if (flag)
+                {
+                    MessageBox.Show("That's invalid move, please shoot another enemy piece");
+                    shift = true;
+                    tmpFlag = true;
+                    return;
+                }
+                shift = true;
+                flag = false;
+                return;
+            }
+            if (t == 0)
+            {
+                MessageBox.Show("No more cows to place, please select the cow you'd like to move");
+                t++;
+                world.player1.phase = "moving";
+                world.player2.phase = "moving";
+
+                shift = true;
+                return;
+            }
+            SwitchControl();
+
+
+
+        }
+
+
         //This code runs the game, and calls various methods to make the game run
         public void startPlaying()
         {
