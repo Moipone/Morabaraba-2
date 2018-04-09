@@ -363,6 +363,7 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
                 MessageBox.Show("draw");
                 world = new World(new Player("CW"), new Player("CB"));
                 clearBoard();
+                UpdateGUI();
             }
         }
 
@@ -1041,7 +1042,7 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             if (world.player1.CowLives > 0 || world.player2.CowLives > 0 || t > 1)
             {
                 // if (world.player1.CowLives == 0 && world.player2.CowLives == 0)
-                computedraw();
+               
                 if (world.currentPlayer == "CW")
                 {
                     helperCheck1();
@@ -1052,6 +1053,7 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
 
                 }
             }
+            computedraw();
 
             string board = world.board.ToString();
 
