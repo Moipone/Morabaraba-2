@@ -9,9 +9,9 @@ namespace Morabaraba_2
     class Board
     {
         private List<Tile> board;
-        private List<string[]> mills;
+        public List<List<string>> mills;
         private string enemyPos = "";
-        string[] millPoints1 = {  "d1", "a1", "a7",
+        string[] millPoints1 = {  "d1", "a1", "a7","b2",
                                   "c3", "c5", "d3","e3",
                                   "e4", "e5", "g1" };
 
@@ -32,20 +32,9 @@ namespace Morabaraba_2
         public Board()
         {
             GenerateNewBoard();
-            mills = new List<string[]>();
+            mills = allPossibleMillsReal();
         }
-        public void addMill(string[] mill)
-        {
-            mills.Add(mill);
-        }
-        public void removeMill(string[] mill)
-        {
-            mills.Remove(mill);
-        }
-        public List<string[]> getMills()
-        {
-            return this.mills;
-        }
+
         public void GenerateNewBoard()
         {
             board = new List<Tile>();
@@ -59,14 +48,8 @@ namespace Morabaraba_2
         {
             return this.board;
         }
-        public bool contains(string[] list)
-        {
-            for (int i = 0; i < mills.Count; i++)
-            {
-                if (mills[i] == list) return true;
-            }
-            return false;
-        }
+
+
         public void UpdateTile(Tile t)
         {
             for (int i = 0; i < board.Count; i++)
@@ -107,42 +90,67 @@ namespace Morabaraba_2
         }
 
 
-        public string[] checkMills1(string pos)
+        /// <summary>
+        /// This method returns all the possible mill positions 
+        /// </summary>
+        /// <returns></returns>
+        public List<List<string>> allPossibleMillsReal()
         {
-            switch (pos)
-            {
-                case "d1": return new string[] { "a1", "d1", "g1" };
-                case "a1": return new string[] { "a1", "a4", "a7" };
-                case "a7": return new string[] { "a7", "b6", "c5" };
-                case "c3": return new string[] { "c3", "c4", "c5" };
-                case "c5": return new string[] { "c5", "b6", "a7" };
-                case "d3": return new string[] { "c3", "d3", "e3" };
-                case "e4": return new string[] { "e4", "f4", "g4" };
-                case "e5": return new string[] { "e5", "f6", "g7" };
-                case "e3": return new string[] { "e3", "f2", "g1" };
-                case "g1": return new string[] { "g1", "f2", "e3" };
-            }
-            return new string[] { };
-        }
+            List<List<string>> possibleMills = new List<List<string>>();
 
-        public string[] checkMills2(string pos)
-        {
-            switch (pos)
-            {
-                case "a1": return new string[] { "a1", "b2", "c3" };
-                case "a4": return new string[] { "a4", "b4", "c4" };
-                case "b2": return new string[] { "b2", "b4", "b6" };
-                case "b6": return new string[] { "b6", "d6", "f6" };
-                case "d1": return new string[] { "d1", "d2", "d3" };
-                case "d5": return new string[] { "d5", "d6", "d7" };
-                case "c3": return new string[] { "c3", "d3", "e3" };
-                case "c5": return new string[] { "c5", "d5", "e5" };
-                case "e3": return new string[] { "e3", "e4", "e5" };
-                case "f2": return new string[] { "f2", "f4", "f6" };
-                case "g1": return new string[] { "g1", "g4", "g7" };
-                case "a7": return new string[] { "a7", "d7", "g7" };
-            }
-            return new string[] { };
+            List<string> one = new string[] { "a1", "a4", "a7" }.ToList();
+            List<string> two = new string[] { "a1", "d1", "g1" }.ToList();
+            List<string> three = new string[] { "a7", "b6", "c5" }.ToList();
+
+            List<string> four = new string[] { "c3", "c4", "c5" }.ToList();
+            List<string> five = new string[] { "b2", "d2", "f2" }.ToList();
+            List<string> six = new string[] { "c3", "d3", "e3" }.ToList();
+
+            List<string> seven = new string[] { "e4", "f4", "g4" }.ToList();
+            List<string> eight = new string[] { "e5", "f6", "g7" }.ToList();
+            List<string> nine = new string[] { "e3", "f2", "g1" }.ToList();
+
+            List<string> ten = new string[] { "b2", "b4", "b6" }.ToList();
+            List<string> eleven = new string[] { "a1", "b2", "c3" }.ToList();
+            List<string> twelve = new string[] { "a4", "b4", "c4" }.ToList();
+
+            List<string> thirtheen = new string[] { "a7", "d7", "g7" }.ToList();
+            List<string> fourteen = new string[] { "d1", "d2", "d3" }.ToList();
+            List<string> fifteen = new string[] { "d5", "d6", "d7" }.ToList();
+
+            List<string> sixteen = new string[] { "b6", "d6", "f6" }.ToList();
+            List<string> seventeen = new string[] { "f2", "f4", "f6" }.ToList();
+            List<string> eighteen = new string[] { "g1", "g4", "g7" }.ToList();
+
+            List<string> nineteen = new string[] { "e3", "e4", "e5" }.ToList();
+            List<string> twenty = new string[] { "c5", "d5", "e5" }.ToList();
+
+            possibleMills.Add(one);
+            possibleMills.Add(two);
+            possibleMills.Add(three);
+            possibleMills.Add(four);
+            possibleMills.Add(five);
+
+            possibleMills.Add(six);
+            possibleMills.Add(seven);
+            possibleMills.Add(eight);
+            possibleMills.Add(nine);
+            possibleMills.Add(ten);
+
+            possibleMills.Add(eleven);
+            possibleMills.Add(twelve);
+            possibleMills.Add(thirtheen);
+            possibleMills.Add(fourteen);
+            possibleMills.Add(fifteen);
+
+            possibleMills.Add(sixteen);
+            possibleMills.Add(seventeen);
+            possibleMills.Add(eighteen);
+            possibleMills.Add(nineteen);
+            possibleMills.Add(twenty);
+
+            return possibleMills;
+
         }
 
         public List<string> getNeighbourCells(string pos)
@@ -150,12 +158,12 @@ namespace Morabaraba_2
             switch (pos)
             {
                 case "a1": return new string[] { "d1", "b2", "a4" }.ToList();
-                case "a4": return new string[] { "b3", "a7", "a1" }.ToList();
+                case "a4": return new string[] { "a1", "a7", "b4" }.ToList();
                 case "a7": return new string[] { "d7", "a4", "b6" }.ToList();
 
-                case "b4": return new string[] { "a1", "c7", "b4", "d2" }.ToList();
-                case "b5": return new string[] { "b4", "b6", "b2", "c7" }.ToList();
-                case "b6": return new string[] { "b3", "c5", "d6", "a7" }.ToList();
+                case "b2": return new string[] { "a1", "b4", "c3", "d2" }.ToList();
+                case "b4": return new string[] { "b2", "b6", "a4", "c4" }.ToList();
+                case "b6": return new string[] { "b4", "c5", "d6", "a7" }.ToList();
 
                 case "c3": return new string[] { "b2", "c4", "d3" }.ToList();
                 case "c4": return new string[] { "c3", "b4", "c5" }.ToList();
@@ -191,5 +199,7 @@ namespace Morabaraba_2
         {
             return this.millPoints2;
         }
+
+
     }
 }
