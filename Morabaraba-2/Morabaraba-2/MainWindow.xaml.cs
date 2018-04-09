@@ -34,6 +34,10 @@ namespace Morabaraba_2
         bool fly = false;
         int draw = 0;
         bool switchFlag = false;
+        List<string> neighbours = new List<string>();
+        string tmpPos = "";
+        bool tmpFlag = false;
+        int k = 0, z = 0;
         World world = new World(new Player("CW"), new Player("CB"));
         SolidColorBrush cowcolor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
         //Each of the characterd represent a space on the game board, and will turn Yellow or Blue depending on the player value
@@ -600,6 +604,7 @@ namespace Morabaraba_2
             }
 
         }
+
         private void a1_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
