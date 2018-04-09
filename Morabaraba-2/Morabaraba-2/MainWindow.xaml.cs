@@ -644,7 +644,51 @@ namespace Morabaraba_2
                 return;
             }
         }
+        public void updateFlying()
+        {
+            //Remove the old piece from the board
+            world.RemovePiece(tmpPos);
+            //Remove the broken mill of the old piece
+            world.RemoveBrokenMill(tmpPos, world.getPlayer(world.currentPlayer));
+            //Update board
+            updateBoardBlank(tmpPos);
+            if (world.currentPlayer == "CW")
+            {
+                updateBoardWhite(moveTo, "CW");
+                //UpdateGUI();
+            }
+            else
+            {
+                updateBoardBlack(moveTo, "CB");
+                //UpdateGUI();
+            }
+            world.addPiece(moveTo, world.getPlayer(world.currentPlayer));
+            //if the last piece was destroyed, and a player plays the same pos, remove that pos from last 
+            if (world.getPlayer(world.currentPlayer).LastPosPlayed.Contains(moveTo))
+                world.getPlayer(world.currentPlayer).LastPosPlayed.Remove(moveTo);
+            //Add the new position to player
+            world.getPlayer(world.currentPlayer).LastPosPlayed.Add(moveTo);
+            //Check if a new mill has been formed.
+            world.isMill();
 
+            if (world.mill)
+            {
+                tmpFlag = true;
+                if (tmpFlag)
+                {
+                    MessageBox.Show("Which enemy would you like to destroy");
+                    shift = true;
+                    return;
+                }
+
+            }
+            world.switchPlayer();
+            UpdateGUI();
+            t++;
+            switchFlag = false;
+            return;
+
+        }
         private void a1_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
