@@ -313,6 +313,14 @@ namespace Morabaraba_2
             }
 
         }
+        public void clearBoard()
+        {
+            List<string> positions = world.board.getPositions().ToList();
+            for (int i = 0; i < positions.Count; i++)
+            {
+                updateBoardBlank(positions[i]);
+            }
+        }
         /// <summary>
         /// Method makes the colouring effects on the gui
         /// </summary>
@@ -425,7 +433,144 @@ namespace Morabaraba_2
 
 
         }
+        public void playMills()
+        {
+            world.isMill();
+            if (world.mill)
+            {
+                flag = true;
+                MessageBox.Show("Which enemy would you like to eliminate");
+                return;
+            }
+            return;
 
+        }
+        public void helperCheck1()
+        {
+            if (world.board.getTile(move).cond != "blank")
+            {
+                MessageBox.Show("You can't play there, that's an invalid move");
+                return;
+            }
+            world.Play(move, world.getPlayer(tmpPlayer));
+            //if the last piece was destroyed, and a player plays the same pos, remove that pos from last 
+            if (world.getPlayer(world.currentPlayer).LastPosPlayed.Contains(move))
+                world.getPlayer(world.currentPlayer).LastPosPlayed.Remove(move);
+
+            world.getPlayer(world.currentPlayer).LastPosPlayed.Add(move);
+            world.getPlayer(world.currentPlayer).CowLives--;
+            updateBoardWhite(move, tmpPlayer);
+            playMills();
+            world.currentPlayer = "CB";
+
+        }
+        public void helperCheck2()
+        {
+            if (world.board.getTile(move).cond != "blank" && !shift)
+            {
+                MessageBox.Show("You can't play there, that's an invalid move");
+                return;
+            }
+            world.Play(move, world.getPlayer(world.currentPlayer));
+
+            //if the last piece was destroyed, and a player plays the same pos, remove that pos from last 
+            if (world.getPlayer(world.currentPlayer).LastPosPlayed.Contains(move))
+                world.getPlayer(world.currentPlayer).LastPosPlayed.Remove(move);
+
+            world.getPlayer(world.currentPlayer).LastPosPlayed.Add(move);
+            world.getPlayer(world.currentPlayer).CowLives--;
+
+            updateBoardBlack(move, world.currentPlayer);
+            playMills();
+
+            world.currentPlayer = "CW";
+        }
+
+
+        int t = 0;
+        //This code runs the game, and calls various methods to make the game run
+        public void startPlaying()
+        {
+            // Flying and moving should be implemented in this method.
+            if (move.Length == 0)
+            {
+                MessageBox.Show("Please select where you'd like to play");
+                //continue;
+            }
+            //Placing phase only lasts while both players has a cow to place, the we move on to shifting/moving then flying
+            if (world.player1.CowLives > 0 || world.player2.CowLives > 0 || t > 1)
+            {
+                // if (world.player1.CowLives == 0 && world.player2.CowLives == 0)
+                if (world.currentPlayer == "CW")
+                {
+                    helperCheck1();
+                }
+                else
+                {
+                    helperCheck2();
+
+                }
+            }
+
+            string board = world.board.ToString();
+
+        }
+        private void updateGame(string pos)
+        {
+            //If you're in the shifting/flying phase don't make use of this method
+            if (shift) return;
+
+            hit = pos;
+
+            if (world.mill)
+            {
+                // player.SetEnemyPos(hit);
+                string enemy = world.board.getTile(hit).cond;
+                if (enemy == "blank")
+                {
+                    MessageBox.Show("You can't destroy a blank spot");
+                    return;
+                }
+
+                if (enemy != world.currentPlayer && enemy != "blank")
+                {
+                    MessageBox.Show("You can't destroy your own player!!!");
+                    MessageBox.Show("Please choose an enemy piece!");
+                    return;
+                }
+                //Naming of this wasn't great, it basically checks whether there is still pieces that's not in a mill
+                if (!world.isNotAvailablePieces(world.getPlayer(enemy)))
+                {
+
+                    if (world.isInMillPos(hit, world.getPlayer(enemy)))
+                    {
+                        MessageBox.Show("You can't shoot a piece in a mill.\n There are still available pieces to shoot");
+                        return;
+                    }
+                    //If there's only pieces in mills, then you can shoot those pieces, and it would fall through this clause
+                }
+
+                world.mill = false;
+                world.RemovePiece(hit);
+                //Check to see if a mill has been broken, to recheck
+                world.RemoveBrokenMill(hit, world.getPlayer(world.currentPlayer));
+                updateBoardBlank(hit);
+                UpdateGUI();
+                return;
+            }
+            if (!world.mill)
+            {
+                move = pos;
+                startPlaying();
+
+                UpdateGUI();
+            }
+
+        }
+        public void startShifting(string pos)
+        {
+
+        }
         private void a1_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
