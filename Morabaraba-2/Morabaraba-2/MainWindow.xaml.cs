@@ -485,36 +485,6 @@ namespace Morabaraba_2
 
             world.currentPlayer = "CW";
         }
-
-
-        int t = 0;
-        //This code runs the game, and calls various methods to make the game run
-        public void startPlaying()
-        {
-            // Flying and moving should be implemented in this method.
-            if (move.Length == 0)
-            {
-                MessageBox.Show("Please select where you'd like to play");
-                //continue;
-            }
-            //Placing phase only lasts while both players has a cow to place, the we move on to shifting/moving then flying
-            if (world.player1.CowLives > 0 || world.player2.CowLives > 0 || t > 1)
-            {
-                // if (world.player1.CowLives == 0 && world.player2.CowLives == 0)
-                if (world.currentPlayer == "CW")
-                {
-                    helperCheck1();
-                }
-                else
-                {
-                    helperCheck2();
-
-                }
-            }
-
-            string board = world.board.ToString();
-
-        }
         private void updateGame(string pos)
         {
             //If you're in the shifting/flying phase don't make use of this method
@@ -567,6 +537,45 @@ namespace Morabaraba_2
             }
 
         }
+        private void a1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+
+            startShifting("a1");
+            updateGame("a1");
+            //MessageBox.Show("a1"); //remove
+        }
+
+
+        int t = 0;
+        //This code runs the game, and calls various methods to make the game run
+        public void startPlaying()
+        {
+            // Flying and moving should be implemented in this method.
+            if (move.Length == 0)
+            {
+                MessageBox.Show("Please select where you'd like to play");
+                //continue;
+            }
+            //Placing phase only lasts while both players has a cow to place, the we move on to shifting/moving then flying
+            if (world.player1.CowLives > 0 || world.player2.CowLives > 0 || t > 1)
+            {
+                // if (world.player1.CowLives == 0 && world.player2.CowLives == 0)
+                if (world.currentPlayer == "CW")
+                {
+                    helperCheck1();
+                }
+                else
+                {
+                    helperCheck2();
+
+                }
+            }
+
+            string board = world.board.ToString();
+
+        }
+      
         public void startShifting(string pos)
         {
 
