@@ -80,27 +80,7 @@ namespace Morabaraba_2
             }
             return true;
         }
-        public bool matchLists(List<string> list1, List<string> list2)
-        {
-            if (list1.Count != list2.Count) return false;
-            for (int i = 0; i < list1.Count; i++)
-            {
-                if (list1[i] != list2[i]) return false;
-            }
-            return true;
-        }
-        public bool contains(List<string> list, List<List<string>> mills)
-        {
-            if (mills.Count == 0) return false;
-            //Check if each individual string is equal to the other
-            for (int i = 0; i < mills.Count; i++)
-            {
-                if (mills[i].Count != list.Count) return false;
-                // If the two lists match return true
-                if (matchLists(mills[i], list)) return true;
-            }
-            return false;
-        }
+ 
         //This is a method to check if a mill has been formed...
         public void isMill()
         {
@@ -118,21 +98,15 @@ namespace Morabaraba_2
                             millCount++;
                             if (millCount == 3 && !player1.millsFormed.Contains(board.mills[i]))
                             {
-                                //Prevent any errors from arising where duplicate mills are added to the mills formed list in player 
-                                for (int z = 0; z < player1.millsFormed.Count; z++)
-                                    if (matchLists(player1.millsFormed[z], board.mills[i])) return;
-
                                 player1.millsFormed.Add(board.mills[i]);
-
                                 mill = true;
-                                return;
+                             
                             }
                         }
                     }
                     if (millCount == 3 && !player1.millsFormed.Contains(board.mills[i]))
                     {
                         player1.millsFormed.Add(board.mills[i]);
-
                         mill = true;
                         return;
                     }
@@ -152,25 +126,14 @@ namespace Morabaraba_2
                             millCount++;
                             if (millCount == 3 && !player2.millsFormed.Contains(board.mills[i]))
                             {
-                                //Prevent any errors from arising where duplicate mills are added to the mills formed list in player 
-                                for (int z = 0; z < player2.millsFormed.Count; z++)
-                                    if (matchLists(player2.millsFormed[z], board.mills[i])) return;
-
                                 player2.millsFormed.Add(board.mills[i]);
-
                                 mill = true;
                                 return;
                             }
-
                         }
                         if (millCount == 3 && !player2.millsFormed.Contains(board.mills[i]))
                         {
-                            //Prevent any errors from arising where duplicate mills are added to the mills formed list in player
-                            for (int z = 0; z < player2.millsFormed.Count; z++)
-                                if (matchLists(player2.millsFormed[z], board.mills[i])) return;
-
                             player2.millsFormed.Add(board.mills[i]);
-
                             mill = true;
                             return;
                         }
