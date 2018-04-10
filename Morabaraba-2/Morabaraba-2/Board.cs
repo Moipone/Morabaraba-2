@@ -10,15 +10,7 @@ namespace Morabaraba_2
     {
         private List<Tile> board;
         public List<List<string>> mills;
-        private string enemyPos = "";
-        string[] millPoints1 = {  "d1", "a1", "a7","b2",
-                                  "c3", "c5", "d3","e3",
-                                  "e4", "e5", "g1" };
 
-        string[] millPoints2 = {  "a1", "a4", "b2",
-                                  "b6", "d1", "d5",
-                                  "c3", "c5", "e3",
-                                  "f2", "g1", "a7" };
         private string[] positions =
                                {"a1", "a4","a7",
                                "b2","b4","b6",
@@ -34,8 +26,10 @@ namespace Morabaraba_2
             GenerateNewBoard();
             mills = allPossibleMillsReal();
         }
-
-        public void GenerateNewBoard()
+        /// <summary>
+        /// Generates a new new board
+        /// </summary>
+        private void GenerateNewBoard()
         {
             board = new List<Tile>();
             for (int i = 0; i < positions.Length; i++)
@@ -49,7 +43,10 @@ namespace Morabaraba_2
             return this.board;
         }
 
-
+        /// <summary>
+        /// Method to update a tile on the given board. Removes Old tile, and inserts new tile in its place
+        /// </summary>
+        /// <param name="t">Tile to update</param>
         public void UpdateTile(Tile t)
         {
             for (int i = 0; i < board.Count; i++)
@@ -152,7 +149,11 @@ namespace Morabaraba_2
             return possibleMills;
 
         }
-
+        /// <summary>
+        /// Given a certain position, compute the neightbours of that cell
+        /// </summary>
+        /// <param name="pos"> Input position, to compute the neighbours of that pos</param>
+        /// <returns></returns>
         public List<string> getNeighbourCells(string pos)
         {
             switch (pos)
@@ -191,15 +192,7 @@ namespace Morabaraba_2
             }
             return new List<string>();
         }
-        public string[] getMillP1()
-        {
-            return this.millPoints1;
-        }
-        public string[] getMillP2()
-        {
-            return this.millPoints2;
-        }
-
+ 
 
     }
 }

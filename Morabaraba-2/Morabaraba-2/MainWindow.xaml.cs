@@ -21,9 +21,6 @@ namespace Morabaraba_2
     public partial class MainWindow : Window
     {
 
-
-
-
         //global variables 
         public int p1Cows = 12; //initial number of cows for each player 
         public int p2Cows = 12;
@@ -40,15 +37,11 @@ namespace Morabaraba_2
         int k = 0, z = 0;
         World world = new World(new Player("CW"), new Player("CB"));
         SolidColorBrush cowcolor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-        //Each of the characterd represent a space on the game board, and will turn Yellow or Blue depending on the player value
-        //char A1, A4, A7, B2, B4, B6, C3, C4, C5, D1, D2, D3, D5, D6, D7, E3, E4, E5, F2, F4, F6, G1, G4, G7 = 'B';
-        //char playerY = 'Y';
-        //char playerB = 'B';
+
         string move = "";
-        string hit = "";
-       
+        string hit = "";    
         int t = 0;
-        // Fix re-forming of mills 
+   
         public MainWindow()
         {
             InitializeComponent();
@@ -59,7 +52,7 @@ namespace Morabaraba_2
             UpdateGUI();
        
 
-string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	Each player has 12 pieces known as cows.Player 1 has dark cow and Player 2 has light cows" + "\n•	Player one moves first" + "\n•	Each turn consists of placing cows on the board"
+string rules = "The game contains 3 stages \n"+ "\nStage 1: Cow placing" + "\n•	Each player has 12 pieces known as cows.Player 1 has dark cow and Player 2 has light cows" + "\n•	Player one moves first" + "\n•	Each turn consists of placing cows on the board"
                 
                 + "\n•	Three cows on any line creates a mill" 
                 + "\n•	Whenever a player creates a mill they are to shoot any cow of the opponent accept cows in a mill."
@@ -83,6 +76,9 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             
 
         }
+        /// <summary>
+        /// This method just updates labels on the gui
+        /// </summary>
         public void UpdateGUI()
         {
             if (world.currentPlayer == "CW")
@@ -104,6 +100,11 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
         // Red = CW
         // Blue = CB
         // Black = Blank
+        /// <summary>
+        /// Given a certain player, compute it's colour on the GUI
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns></returns>
         public Brush colour(string player)
         {
             switch (player)
@@ -341,6 +342,9 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             }
 
         }
+        /// <summary>
+        /// Clears the board 
+        /// </summary>
         public void clearBoard()
         {
             List<string> positions = world.board.getPositions().ToList();
@@ -349,6 +353,10 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
                 updateBoardBlank(positions[i]);
             }
         }
+
+        /// <summary>
+        /// Computes a situation where there's no moves to make, thus causing the game to end a Draw
+        /// </summary>
         public void computedraw()
         {
             int counter = 0;
@@ -360,13 +368,16 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             }
             if(counter == 0)
             {
-                MessageBox.Show("draw");
+                MessageBox.Show("Draw!");
                 world = new World(new Player("CW"), new Player("CB"));
                 clearBoard();
                 UpdateGUI();
             }
         }
-
+        /// <summary>
+        /// Controls all moving and flying phase and ending of game 
+        /// </summary>
+        /// <param name="pos"></param>
         public void startShifting(string pos)
         {
             moveTo = pos;
@@ -377,9 +388,7 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces > 3) && (blackPieces > 3))
             {
                 if (world.currentPlayer == "CW") movingPhase();
-
                 else movingPhase();
-
             }
             //Flying phase.
             if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces == 3) && (blackPieces > 3))
@@ -399,10 +408,9 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             //Both players are now flying.......................................................
             if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces == 3) && (blackPieces == 3))
             {
-
                 world.player1.phase = "Flying";
                 world.player2.phase = "Flying";
-
+    
                 if (world.currentPlayer == "CW") flyingPhase(); 
                 else flyingPhase();
                 // If no mill has been formed within 20 moves issa draw.
@@ -433,7 +441,6 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
                 MessageBox.Show("Black loses!, would you like to play again ?");
                 world = new World(new Player("CW"), new Player("CB"));
                 world.currentPlayer = "CW";
-
                 clearBoard();
                 UpdateGUI();
                 return;
@@ -442,10 +449,11 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
         }
 
     
-
-        public void flyingPhase() //1
+        /// <summary>
+        /// Implements the flying phase by calling it's helper methods
+        /// </summary>
+        public void flyingPhase() 
         {
-
             // Check if it's time to shoot a piece
             if (tmpFlag)
             {
@@ -470,7 +478,6 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             if (t == 100) t = 1;
 
             //Get the pos and check if its an available position  
-
             Tile tl = world.board.getTile(moveTo);
             Tile two = world.board.getTile(tmpPos);
             if (two.cond == "Blank")
@@ -489,15 +496,11 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             {
                 // Update the board and game 
                 updateFlying();
-
-
-
             }
             else
             {
                 int indx = world.getPlayer(world.currentPlayer).LastPosPlayed.Count - 1;
                 MessageBox.Show(string.Format("To which free space would you like to move {0} ? ", world.getPlayer(world.currentPlayer).LastPosPlayed[indx]));
-
                 return;
             }
         }
@@ -614,6 +617,10 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
 
 
         }
+
+        /// <summary>
+        /// Computes mills
+        /// </summary>
         public void playMills()
         {
             world.isMill();
@@ -626,6 +633,9 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             return;
 
         }
+        /// <summary>
+        /// Implements placing phase for player 1
+        /// </summary>
         public void helperCheck1()
         {
             if (world.board.getTile(move).cond != "blank")
@@ -645,10 +655,10 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             world.currentPlayer = "CB";
 
         }
-        public void restartGame()
-        {
 
-        }
+        /// <summary>
+        /// Implements placing phase for player 2
+        /// </summary>
         public void helperCheck2()
         {
             if (world.board.getTile(move).cond != "blank" && !shift)
@@ -670,6 +680,11 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
 
             world.currentPlayer = "CW";
         }
+
+        /// <summary>
+        /// This method runs the game, for placing phase
+        /// </summary>
+        /// <param name="pos">Input of user</param>
         private void updateGame(string pos)
         {
             //If you're in the shifting/flying phase don't make use of this method
@@ -722,6 +737,11 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             }
 
         }
+
+        /// <summary>
+        /// This method runs the game for the moving and flying phase!
+        /// </summary>
+        /// <param name="pos">Given a position, move it, or make it fly to a different pos</param>
         private void updateGameMove(string pos) //This is anothe method that's a backbone of the game. It validates co-ordinates and implements shooting
         {
             //If you're in the shifting/flying phase don't make use of this method
@@ -781,6 +801,9 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             }
 
         }
+        /// <summary>
+        /// Helper method for the flying phase 
+        /// </summary>
         public void flyingHelper()
         {
             if (k == 0 && world.currentPlayer == "CB" && world.getPlayer("CB").phase.ToLower() == "flying")
@@ -821,6 +844,9 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
                 return;
             }
         }
+        /// <summary>
+        /// Helper method for the flying phase 
+        /// </summary>
         public void updateFlying()
         {
             //Remove the old piece from the board
@@ -866,16 +892,9 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             return;
 
         }
-       
-        private void a1_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-
-            startShifting("a1");
-            updateGame("a1");
-            //MessageBox.Show("a1"); //remove
-        }
-
+        /// <summary>
+        /// Helper method to compute mills during the moving/flying phases
+        /// </summary>
         public void ControlMills()
         {
             if (world.mill)
@@ -894,7 +913,9 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             t++;
             switchFlag = false;
         }
-
+        /// <summary>
+        /// Helper method to run the moving phase
+        /// </summary>
         public void RunMoving()
         {
             //Go through neighbour cells to see if there's an available position  
@@ -961,7 +982,9 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
                 return;
             }
         }
-
+        /// <summary>
+        /// Helper method to control and run the moving phase
+        /// </summary>
         public void SwitchControl()
         {
             //This check controls the moving, once a piece has been selected, jump out of this method and when you come back that'll be your move to pos
@@ -989,7 +1012,9 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             if (t == 100) t = 1;
             RunMoving();
         }
-
+        /// <summary>
+        /// This method implements the moving phase by calling various methods
+        /// </summary>
         public void movingPhase()
         {
             if (fly) return;
@@ -1024,15 +1049,13 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
             }
             SwitchControl();
 
-
-
         }
 
-
-        //This code runs the game, and calls various methods to make the game run
+        /// <summary>
+        /// This method runs the placing phase
+        /// </summary>
         public void startPlaying()
         {
-            // Flying and moving should be implemented in this method.
             if (move.Length == 0)
             {
                 MessageBox.Show("Please select where you'd like to play");
@@ -1060,15 +1083,16 @@ string rules = "The game contains 3 stages "+ "\nStage 1: Cow placing" + "\n•	
         }
 
        
-       
-        //private void a1_MouseDown(object sender, MouseButtonEventArgs e)
-        //{
+    
+        //From this point there's only handler code.
+        private void a1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
 
 
-        //    startShifting("a1");
-        //    updateGame("a1");
-        //    //MessageBox.Show("a1"); //remove
-        //}
+            startShifting("a1");
+            updateGame("a1");
+        
+        }
 
         private void a4_MouseDown(object sender, MouseButtonEventArgs e)
         {
