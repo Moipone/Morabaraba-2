@@ -52,25 +52,25 @@ namespace Morabaraba_2
             UpdateGUI();
        
 
-string rules = "The game contains 3 stages \n"+ "\nStage 1: Cow placing" + "\n•	Each player has 12 pieces known as cows.Player 1 has dark cow and Player 2 has light cows" + "\n•	Player one moves first" + "\n•	Each turn consists of placing cows on the board"
+           string rules = "The game contains 3 stages \n"+ "\nStage 1: Cow placing" + "\n•  Each player has 12 pieces known as cows. \n•  Player 1 has dark cow and Player 2 has light cows" + "\n•  Player one moves first" + "\n•  Each turn consists of placing cows on the board"
                 
-                + "\n•	Three cows on any line creates a mill" 
-                + "\n•	Whenever a player creates a mill they are to shoot any cow of the opponent accept cows in a mill."
-                + "\n•	One cow can be short per turn even if a turn creates more than one mill"
+                + "\n•  Three cows on any line creates a mill" 
+                + "\n•  Whenever a player creates a mill they are to shoot any cow of the opponent accept cows in a mill."
+                + "\n•  One cow can be short per turn even if a turn creates more than one mill"
                                                                                                                           
-                 + "Stage 2: Cow moving"
-                 + "\n•	After players run out of cows to place, each turn consists of moving cows to an empty adjacent intersection. "
-                 + "\n•	A mill allows a cow that is not in a mill to be short, unless all cows are in a mill"
-                 + "\n•	A mill can be broken and remade by moving cows back and forth."
-                 + "\n•	A mill broken to make another mill can only be remade after the next turn  "
+                 + "\n\nStage 2: Cow moving"
+                 + "\n•  After players run out of cows to place, each turn consists of moving cows to an empty adjacent intersection. "
+                 + "\n•  A mill allows a cow that is not in a mill to be short, unless all cows are in a mill"
+                 + "\n•  A mill can be broken and remade by moving cows back and forth."
+                 + "\n•  A mill broken to make another mill can only be remade after the next turn  "
                                                                                                                                              
-                 + "\nStage 3: flying"
-                 + "\n•	Whenever a player has three cows left, the player’s cows are allowed to fly to any intersection not just the adjacent ones."
+                 + "\n\nStage 3: flying"
+                 + "\n•  Whenever a player has three cows left, the player’s cows are allowed to fly to any intersection not just the adjacent ones."
                  + "\nFinishing the game"
-                 + "\n•	A player wins when the opponent cannot make a move "
-                 + "\n•	A player wins when the opponent is left with 2 cows "
-                 + "\n•	When both players have three cows, they are allowed ten turns. If no shooting takes place it is declared a draw."
-                 + "\n•	One that cheats loses the game";
+                 + "\n•  A player wins when the opponent cannot make a move "
+                 + "\n•  A player wins when the opponent is left with 2 cows "
+                 + "\n•  When both players have three cows, they are allowed ten turns. If no shooting takes place it is declared a draw."
+                 + "\n•  One that cheats loses the game";
             MessageBox.Show(rules);                                                                                                                                        
             MessageBox.Show("Player 1: Blue\nPlayer 2: Yellow");
             
