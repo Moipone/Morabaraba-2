@@ -368,10 +368,31 @@ namespace Morabaraba_2
             }
             if(counter == 0)
             {
-                MessageBox.Show("Draw!");
+                MessageBox.Show("Draw, both players lose!\n\nWould you like to play again!");
                 world = new World(new Player("CW"), new Player("CB"));
                 clearBoard();
                 UpdateGUI();
+            }
+        }
+        /// <summary>
+        /// Updates the gui component of how many pieces are still left on the board
+        /// </summary>
+        /// <param name="player"></param>
+        public void RemovePieceGUI(string player)
+        {
+            StackPanel stackPanel1 = p1;
+            StackPanel stackPanel2 = p2;
+            
+            if(player == "CW")
+            {
+                if (world.player1.CowLives == 0) return;
+
+                stackPanel1.Children.RemoveAt(world.player1.CowLives - 1);
+            }
+            else
+            {
+                if (world.player2.CowLives == 0) return;
+                stackPanel2.Children.RemoveAt(world.player2.CowLives - 1);
             }
         }
         /// <summary>
@@ -644,6 +665,7 @@ namespace Morabaraba_2
                 return;
             }
             world.Play(move, world.getPlayer(tmpPlayer));
+            RemovePieceGUI(world.currentPlayer);
             //if the last piece was destroyed, and a player plays the same pos, remove that pos from last 
             if (world.getPlayer(world.currentPlayer).LastPosPlayed.Contains(move))
                 world.getPlayer(world.currentPlayer).LastPosPlayed.Remove(move);
@@ -667,7 +689,7 @@ namespace Morabaraba_2
                 return;
             }
             world.Play(move, world.getPlayer(world.currentPlayer));
-
+            RemovePieceGUI(world.currentPlayer);
             //if the last piece was destroyed, and a player plays the same pos, remove that pos from last 
             if (world.getPlayer(world.currentPlayer).LastPosPlayed.Contains(move))
                 world.getPlayer(world.currentPlayer).LastPosPlayed.Remove(move);
