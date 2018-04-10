@@ -233,10 +233,8 @@ namespace Morabaraba_2
         /// <param name="player"></param>
         public void updateBoardWhite(string pos, string player)
         {
-
             if (player == "CW")
             {
-
                 switch (pos)
                 {
                     case "a1":
@@ -381,12 +379,10 @@ namespace Morabaraba_2
         public void RemovePieceGUI(string player)
         {
             StackPanel stackPanel1 = p1;
-            StackPanel stackPanel2 = p2;
-            
+            StackPanel stackPanel2 = p2;  
             if(player == "CW")
             {
                 if (world.player1.CowLives == 0) return;
-
                 stackPanel1.Children.RemoveAt(world.player1.CowLives - 1);
             }
             else
@@ -395,6 +391,7 @@ namespace Morabaraba_2
                 stackPanel2.Children.RemoveAt(world.player2.CowLives - 1);
             }
         }
+
         /// <summary>
         /// Controls all moving and flying phase and ending of game 
         /// </summary>
@@ -417,21 +414,18 @@ namespace Morabaraba_2
                 world.player1.phase = "Flying";
                 if (world.currentPlayer == "CW") flyingPhase();
                 else movingPhase();
-
             }
             if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces > 3) && (blackPieces == 3))
             {
                 world.player2.phase = "Flying";
                 if (world.currentPlayer == "CW") movingPhase();
                 else flyingPhase();
-
             }
             //Both players are now flying.......................................................
             if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces == 3) && (blackPieces == 3))
             {
                 world.player1.phase = "Flying";
                 world.player2.phase = "Flying";
-    
                 if (world.currentPlayer == "CW") flyingPhase(); 
                 else flyingPhase();
                 // If no mill has been formed within 20 moves issa draw.
@@ -440,12 +434,10 @@ namespace Morabaraba_2
                 {
                     MessageBox.Show("Draw! both players lose!\n\nWould you like to play again!");
                 }
-
             }
             //Re-Calculate number of pieces on the board, to see who now 
             whitePieces = world.getPlayerPieces(world.getPlayer(world.player1.symbol)).Count;
             blackPieces = world.getPlayerPieces(world.getPlayer(world.player2.symbol)).Count;
-
             if ((world.player1.CowLives == 0 && world.player2.CowLives == 0) && (whitePieces < 3))
             {
                 // White loses
@@ -465,10 +457,8 @@ namespace Morabaraba_2
                 clearBoard();
                 UpdateGUI();
                 return;
-
             }
         }
-
     
         /// <summary>
         /// Implements the flying phase by calling it's helper methods
@@ -497,7 +487,6 @@ namespace Morabaraba_2
             //Helper method to compute which player is in which phase
             flyingHelper();
             if (t == 100) t = 1;
-
             //Get the pos and check if its an available position  
             Tile tl = world.board.getTile(moveTo);
             Tile two = world.board.getTile(tmpPos);
@@ -632,11 +621,6 @@ namespace Morabaraba_2
                     g7.StrokeThickness = 3;
                     break;
             }
-
-
-
-
-
         }
 
         /// <summary>
@@ -652,7 +636,6 @@ namespace Morabaraba_2
                 return;
             }
             return;
-
         }
         /// <summary>
         /// Implements placing phase for player 1
@@ -693,13 +676,10 @@ namespace Morabaraba_2
             //if the last piece was destroyed, and a player plays the same pos, remove that pos from last 
             if (world.getPlayer(world.currentPlayer).LastPosPlayed.Contains(move))
                 world.getPlayer(world.currentPlayer).LastPosPlayed.Remove(move);
-
             world.getPlayer(world.currentPlayer).LastPosPlayed.Add(move);
             world.getPlayer(world.currentPlayer).CowLives--;
-
             updateBoardBlack(move, world.currentPlayer);
             playMills();
-
             world.currentPlayer = "CW";
         }
 
@@ -711,9 +691,7 @@ namespace Morabaraba_2
         {
             //If you're in the shifting/flying phase don't make use of this method
             if (shift) return;
-
             hit = pos;
-
             if (world.mill)
             {
                 // player.SetEnemyPos(hit);
@@ -723,7 +701,6 @@ namespace Morabaraba_2
                     MessageBox.Show("You can't destroy a blank spot");
                     return;
                 }
-
                 if (enemy != world.currentPlayer && enemy != "blank")
                 {
                     MessageBox.Show("You can't destroy your own player!!!");
@@ -733,7 +710,6 @@ namespace Morabaraba_2
                 //Naming of this wasn't great, it basically checks whether there is still pieces that's not in a mill
                 if (!world.isNotAvailablePieces(world.getPlayer(enemy)))
                 {
-
                     if (world.isInMillPos(hit, world.getPlayer(enemy)))
                     {
                         MessageBox.Show("You can't shoot a piece in a mill.\n There are still available pieces to shoot");
@@ -741,7 +717,6 @@ namespace Morabaraba_2
                     }
                     //If there's only pieces in mills, then you can shoot those pieces, and it would fall through this clause
                 }
-
                 world.mill = false;
                 world.RemovePiece(hit);
                 //Check to see if a mill has been broken, to recheck
@@ -754,7 +729,6 @@ namespace Morabaraba_2
             {
                 move = pos;
                 startPlaying();
-
                 UpdateGUI();
             }
 
@@ -768,9 +742,7 @@ namespace Morabaraba_2
         {
             //If you're in the shifting/flying phase don't make use of this method
             if (shift) return;
-
             hit = pos;
-
             if (world.mill)
             {
                 // player.SetEnemyPos(hit);
@@ -780,7 +752,6 @@ namespace Morabaraba_2
                     MessageBox.Show("You can't destroy a blank spot");
                     return;
                 }
-
                 if (enemy == world.currentPlayer && enemy != "blank")
                 {
                     MessageBox.Show("You can't destroy your own player!!!");
@@ -792,7 +763,6 @@ namespace Morabaraba_2
                 //Naming of this wasn't great, it basically checks whether there is still pieces that's not in a mill
                 if (!world.isNotAvailablePieces(world.getPlayer(enemy)))
                 {
-
                     if (world.isInMillPos(hit, world.getPlayer(enemy)))
                     {
                         MessageBox.Show("You can't shoot a piece in a mill.\n There are still available pieces to shoot");
@@ -802,7 +772,6 @@ namespace Morabaraba_2
                     }
                     //If there's only pieces in mills, then you can shoot those pieces, and it would fall through this clause
                 }
-
                 world.mill = false;
                 world.RemovePiece(hit);
                 //Check to see if a mill has been broken, to recheck
@@ -818,7 +787,6 @@ namespace Morabaraba_2
             {
                 move = pos;
                 startPlaying();
-
                 UpdateGUI();
             }
 
@@ -848,7 +816,6 @@ namespace Morabaraba_2
             {
                 fly = true;
             }
-
             //This check controls the moving, once a piece has been selected, jump out of this method and when you come back that'll be your move to pos
             if (!switchFlag)
             {
@@ -861,7 +828,6 @@ namespace Morabaraba_2
                 }
                 MessageBox.Show(string.Format("Where would you like to move {0}?", moveTo));
                 switchFlag = true;
-
                 tmpPos = moveTo;
                 return;
             }
@@ -905,7 +871,6 @@ namespace Morabaraba_2
                     shift = true;
                     return;
                 }
-
             }
             world.switchPlayer();
             UpdateGUI();
@@ -928,7 +893,6 @@ namespace Morabaraba_2
                     shift = true;
                     return;
                 }
-
             }
             world.switchPlayer();
             UpdateGUI();
@@ -943,7 +907,6 @@ namespace Morabaraba_2
             //Go through neighbour cells to see if there's an available position  
             if (neighbours.Contains(moveTo))
             {
-
                 for (int i = 0; i < neighbours.Count; i++)
                 {
                     Tile tl = world.board.getTile(neighbours[i]);
@@ -963,8 +926,6 @@ namespace Morabaraba_2
 
                     if (tl.cond == "blank" && moveTo == neighbours[i] && two.cond != "blank")
                     {
-
-
                         //Remove the old piece from the board
                         world.RemovePiece(tmpPos);
                         //Remove the broken mill of the old piece
@@ -989,18 +950,15 @@ namespace Morabaraba_2
                         world.getPlayer(world.currentPlayer).LastPosPlayed.Add(moveTo);
                         //Check if a new mill has been formed.
                         world.isMill();
-
                         ControlMills();
                         return;
                     }
                 }
-
             }
             else
             {
                 int indx = world.getPlayer(world.currentPlayer).LastPosPlayed.Count - 1;
                 MessageBox.Show(string.Format("To which adjacent, free space would you like to move {0} ? ", world.getPlayer(world.currentPlayer).LastPosPlayed[indx]));
-
                 return;
             }
         }
@@ -1095,7 +1053,6 @@ namespace Morabaraba_2
                 else
                 {
                     helperCheck2();
-
                 }
             }
             computedraw();
@@ -1109,8 +1066,6 @@ namespace Morabaraba_2
         //From this point there's only handler code.
         private void a1_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
-
             startShifting("a1");
             updateGame("a1");
         
@@ -1118,21 +1073,18 @@ namespace Morabaraba_2
 
         private void a4_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             startShifting("a4");
             updateGame("a4");
         }
 
         private void a7_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             startShifting("a7");
             updateGame("a7");
         }
 
         private void b2_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             startShifting("b2");
             updateGame("b2");
 
@@ -1146,28 +1098,24 @@ namespace Morabaraba_2
 
         private void b6_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             startShifting("b6");
             updateGame("b6");
         }
 
         private void c3_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             startShifting("c3");
             updateGame("c3");
         }
 
         private void c4_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             startShifting("c4");
             updateGame("c4");
         }
 
         private void c5_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             startShifting("c5");
             updateGame("c5");
         }
@@ -1200,7 +1148,6 @@ namespace Morabaraba_2
         {
             startShifting("d6");
             updateGame("d6");
-
         }
 
         private void d7_MouseDown(object sender, MouseButtonEventArgs e)
@@ -1231,7 +1178,6 @@ namespace Morabaraba_2
         {
             startShifting("f2");
             updateGame("f2");
-
         }
 
 
