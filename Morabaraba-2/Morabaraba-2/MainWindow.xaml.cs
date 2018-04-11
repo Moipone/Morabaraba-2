@@ -366,7 +366,7 @@ namespace Morabaraba_2
             }
             if(counter == 0)
             {
-                MessageBox.Show("Draw, both players lose!\n\nWould you like to play again!");
+                MessageBox.Show("Draw, both players lose!");
                 world = new World(new Player("CW"), new Player("CB"));
                 clearBoard();
                 UpdateGUI();
@@ -475,7 +475,7 @@ namespace Morabaraba_2
                 //Flag is used a a check within to see if a player wasn't removed, then it must come back and try again
                 if (flag)
                 {
-                    MessageBox.Show("That's invalid move, please shoot another enemy piece");
+                    msgs.Content = ("That's invalid move, please shoot another enemy piece");
                     shift = true;
                     tmpFlag = true;
                     return;
@@ -492,13 +492,13 @@ namespace Morabaraba_2
             Tile two = world.board.getTile(tmpPos);
             if (two.cond == "Blank")
             {
-                MessageBox.Show("You can't move an empty piece");
+                msgs.Content = ("You can't move an empty piece");
                 flag = true;
                 return;
             }
             if (two.cond != world.currentPlayer)
             {
-                MessageBox.Show("You can't move your oponents piece\nPlease move your own piece!");
+                msgs.Content = ("You can't move your oponents piece\nPlease move your own piece!");
                 flag = true;
                 return;
             }
@@ -510,7 +510,7 @@ namespace Morabaraba_2
             else
             {
                 int indx = world.getPlayer(world.currentPlayer).LastPosPlayed.Count - 1;
-                MessageBox.Show(string.Format("To which free space would you like to move {0} ? ", world.getPlayer(world.currentPlayer).LastPosPlayed[indx]));
+                msgs.Content = (string.Format("To which free space would you like to move {0} ? ", world.getPlayer(world.currentPlayer).LastPosPlayed[indx]));
                 return;
             }
         }
@@ -632,7 +632,7 @@ namespace Morabaraba_2
             if (world.mill)
             {
                 flag = true;
-                MessageBox.Show("Which enemy would you like to eliminate");
+                msgs.Content = ("Which enemy would you like to eliminate");
                 return;
             }
             return;
@@ -644,7 +644,7 @@ namespace Morabaraba_2
         {
             if (world.board.getTile(move).cond != "blank")
             {
-                MessageBox.Show("You can't play there, that's an invalid move");
+                msgs.Content = ("You can't play there, that's an invalid move");
                 return;
             }
             world.Play(move, world.getPlayer(tmpPlayer));
@@ -668,7 +668,7 @@ namespace Morabaraba_2
         {
             if (world.board.getTile(move).cond != "blank" && !shift)
             {
-                MessageBox.Show("You can't play there, that's an invalid move");
+                msgs.Content = ("You can't play there, that's an invalid move");
                 return;
             }
             world.Play(move, world.getPlayer(world.currentPlayer));
@@ -698,13 +698,13 @@ namespace Morabaraba_2
                 string enemy = world.board.getTile(hit).cond;
                 if (enemy == "blank")
                 {
-                    MessageBox.Show("You can't destroy a blank spot");
+                    msgs.Content = ("You can't destroy a blank spot");
                     return;
                 }
                 if (enemy != world.currentPlayer && enemy != "blank")
                 {
-                    MessageBox.Show("You can't destroy your own player!!!");
-                    MessageBox.Show("Please choose an enemy piece!");
+                    msgs.Content = ("You can't destroy your own player!!!");
+                    msgs.Content = ("Please choose an enemy piece!");
                     return;
                 }
                 //Naming of this wasn't great, it basically checks whether there is still pieces that's not in a mill
@@ -712,7 +712,7 @@ namespace Morabaraba_2
                 {
                     if (world.isInMillPos(hit, world.getPlayer(enemy)))
                     {
-                        MessageBox.Show("You can't shoot a piece in a mill.\n There are still available pieces to shoot");
+                        msgs.Content = ("You can't shoot a piece in a mill.\n There are still available pieces to shoot");
                         return;
                     }
                     //If there's only pieces in mills, then you can shoot those pieces, and it would fall through this clause
@@ -749,13 +749,13 @@ namespace Morabaraba_2
                 string enemy = world.board.getTile(hit).cond;
                 if (enemy == "blank")
                 {
-                    MessageBox.Show("You can't destroy a blank spot");
+                    msgs.Content = ("You can't destroy a blank spot");
                     return;
                 }
                 if (enemy == world.currentPlayer && enemy != "blank")
                 {
-                    MessageBox.Show("You can't destroy your own player!!!");
-                    MessageBox.Show("Please choose an enemy piece!");
+                    msgs.Content = ("You can't destroy your own player!!!");
+                    msgs.Content = ("Please choose an enemy piece!");
                     //Something went wrong, redo by attempting again
                     flag = true;
                     return;
@@ -765,7 +765,7 @@ namespace Morabaraba_2
                 {
                     if (world.isInMillPos(hit, world.getPlayer(enemy)))
                     {
-                        MessageBox.Show("You can't shoot a piece in a mill.\n There are still available pieces to shoot");
+                        msgs.Content = ("You can't shoot a piece in a mill.\n There are still available pieces to shoot");
                         //Something went wrong, redo by attempting to shoot another piece
                         flag = true;
                         return;
@@ -798,7 +798,7 @@ namespace Morabaraba_2
         {
             if (k == 0 && world.currentPlayer == "CB" && world.getPlayer("CB").phase.ToLower() == "flying")
             {
-                MessageBox.Show(string.Format("{0} Cows can now fly!, please select the cow you'd like to move", world.currentPlayer));
+                msgs.Content = (string.Format("{0} Cows can now fly!, please select the cow you'd like to move", world.currentPlayer));
                 k++;
                 shift = true;
                 //fly = true;
@@ -806,7 +806,7 @@ namespace Morabaraba_2
             }
             if (z == 0 && world.currentPlayer == "CW" && world.getPlayer("CW").phase.ToLower() == "flying")
             {
-                MessageBox.Show(string.Format("{0} Cows can now fly!, please select the cow you'd like to move", world.currentPlayer));
+                msgs.Content = (string.Format("{0} Cows can now fly!, please select the cow you'd like to move", world.currentPlayer));
                 z++;
                 shift = true;
                 //fly = true;
@@ -822,11 +822,11 @@ namespace Morabaraba_2
                 Tile tile = world.board.getTile(moveTo);
                 if (tile.cond == "blank")
                 {
-                    MessageBox.Show("You can't move a blank spot");
+                    msgs.Content = ("You can't move a blank spot");
                     flag = true;
                     return;
                 }
-                MessageBox.Show(string.Format("Where would you like to move {0}?", moveTo));
+                msgs.Content = (string.Format("Where would you like to move {0}?", moveTo));
                 switchFlag = true;
                 tmpPos = moveTo;
                 return;
@@ -867,7 +867,7 @@ namespace Morabaraba_2
                 tmpFlag = true;
                 if (tmpFlag)
                 {
-                    MessageBox.Show("Which enemy would you like to destroy");
+                    msgs.Content = ("Which enemy would you like to destroy");
                     shift = true;
                     return;
                 }
@@ -889,7 +889,7 @@ namespace Morabaraba_2
                 tmpFlag = true;
                 if (tmpFlag)
                 {
-                    MessageBox.Show("Which enemy would you like to destroy");
+                    msgs.Content = ("Which enemy would you like to destroy");
                     shift = true;
                     return;
                 }
@@ -913,13 +913,13 @@ namespace Morabaraba_2
                     Tile two = world.board.getTile(tmpPos);
                     if (two.cond == "Blank")
                     {
-                        MessageBox.Show("You can't move an empty piece");
+                        msgs.Content = ("You can't move an empty piece");
                         flag = true;
                         return;
                     }
                     if (two.cond != world.currentPlayer)
                     {
-                        MessageBox.Show("You can't move your oponents piece\nPlease move your own piece!");
+                        msgs.Content = ("You can't move your oponents piece\nPlease move your own piece!");
                         flag = true;
                         return;
                     }
@@ -958,7 +958,7 @@ namespace Morabaraba_2
             else
             {
                 int indx = world.getPlayer(world.currentPlayer).LastPosPlayed.Count - 1;
-                MessageBox.Show(string.Format("To which adjacent, free space would you like to move {0} ? ", world.getPlayer(world.currentPlayer).LastPosPlayed[indx]));
+                msgs.Content = (string.Format("To which adjacent, free space would you like to move {0} ? ", world.getPlayer(world.currentPlayer).LastPosPlayed[indx]));
                 return;
             }
         }
@@ -973,17 +973,17 @@ namespace Morabaraba_2
                 Tile tile = world.board.getTile(moveTo);
                 if (tile.cond == "blank")
                 {
-                    MessageBox.Show("You can't move a blank spot");
+                    msgs.Content = ("You can't move a blank spot");
                     flag = true;
                     return;
                 }
                 if (tile.cond != world.currentPlayer)
                 {
-                    MessageBox.Show("You can't move your opponents piece!!!");
+                    msgs.Content = ("You can't move your opponents piece!!!");
                     flag = true;
                     return;
                 }
-                MessageBox.Show(string.Format("Where would you like to move {0}?", moveTo));
+                msgs.Content = (string.Format("Where would you like to move {0}?", moveTo));
                 switchFlag = true;
                 neighbours = world.board.getNeighbourCells(moveTo);
                 tmpPos = moveTo;
@@ -1008,7 +1008,7 @@ namespace Morabaraba_2
                 //Flag is used a a check within to see if a player wasn't removed, then it must come back and try again
                 if (flag)
                 {
-                    MessageBox.Show("That's invalid move, please shoot another enemy piece");
+                    msgs.Content = ("That's invalid move, please shoot another enemy piece");
                     shift = true;
                     tmpFlag = true;
                     return;
@@ -1038,7 +1038,7 @@ namespace Morabaraba_2
         {
             if (move.Length == 0)
             {
-                MessageBox.Show("Please select where you'd like to play");
+                msgs.Content = ("Please select where you'd like to play");
                 //continue;
             }
             //Placing phase only lasts while both players has a cow to place, the we move on to shifting/moving then flying

@@ -35,7 +35,7 @@
             <Ellipse x:Name="b2" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="179,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="b2_MouseDown"/>
             <Ellipse x:Name="a7" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="330,41,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="a7_MouseDown"/>
             <Ellipse x:Name="a4" Fill="#FF141415" HorizontalAlignment="Left" Height="20" Margin="242,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="19" OpacityMask="Black" Cursor="Hand" MouseDown="a4_MouseDown"/>
-            <Label x:Name="outL" Content="Player 1 : " HorizontalAlignment="Left" Height="33" Margin="128,260,0,0" VerticalAlignment="Top" Width="95" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
+            <Label x:Name="outL" Content="Player 1 : " HorizontalAlignment="Left" Height="33" Margin="128,244,0,0" VerticalAlignment="Top" Width="95" FontFamily="Arial Black" FontWeight="Bold" FontSize="11"/>
             <StackPanel x:Name="p1" Margin="96,71,391,115" Orientation="Vertical">
                 <Ellipse x:Name="A" Fill="#FF0D22F1" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" OpacityMask="Black" HorizontalAlignment="Left" Width="8"/>
                 <Ellipse x:Name="B" Fill="#FF0D22F1" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
@@ -64,7 +64,7 @@
                 <Ellipse x:Name="W" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
                 <Ellipse x:Name="X" Fill="#FFEEDB22" HorizontalAlignment="Left" Height="8" Margin="1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="8" OpacityMask="Black"/>
             </StackPanel>
-            <Label x:Name="outL_Copy" Content="Player 2 : " HorizontalAlignment="Left" Height="33" Margin="128,286,0,0" VerticalAlignment="Top" Width="95" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
+            <Label x:Name="outL_Copy" Content="Player 2 : " HorizontalAlignment="Left" Height="29" Margin="128,264,0,0" VerticalAlignment="Top" Width="95" FontFamily="Arial Black" FontWeight="Bold" FontSize="11"/>
             <Label Content="A" HorizontalAlignment="Left" Margin="131,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
             <Label Content="G" HorizontalAlignment="Left" Margin="131,219,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
             <Label Content="F" HorizontalAlignment="Left" Margin="131,184,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
@@ -79,12 +79,13 @@
             <Label Content="5" HorizontalAlignment="Left" Margin="277,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
             <Label Content="6" HorizontalAlignment="Left" Margin="306,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
             <Label Content="7" HorizontalAlignment="Left" Margin="329,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
-            <Label x:Name="player1_Box" Content=" " HorizontalAlignment="Left" Height="33" Margin="223,286,0,0" VerticalAlignment="Top" Width="229" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
-            <Label x:Name="player2_Box" Content="" HorizontalAlignment="Left" Height="33" Margin="223,260,0,0" VerticalAlignment="Top" Width="229" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
+            <Label x:Name="player1_Box" Content=" " HorizontalAlignment="Left" Height="33" Margin="223,261,0,0" VerticalAlignment="Top" Width="229" FontFamily="Arial Black" FontWeight="Bold" FontSize="11"/>
+            <Label x:Name="player2_Box" Content="" HorizontalAlignment="Left" Height="33" Margin="223,244,0,0" VerticalAlignment="Top" Width="229" FontFamily="Arial Black" FontWeight="Bold" FontSize="11"/>
             <Label x:Name="outL_Copy1" Content="B-Pieces:" HorizontalAlignment="Left" Height="33" Margin="1,171,0,0" VerticalAlignment="Top" Width="95" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
             <Label x:Name="outL_Copy2" Content="Y-Pieces: " HorizontalAlignment="Left" Height="33" Margin="375,177,0,0" VerticalAlignment="Top" Width="95" FontFamily="Arial Black" FontWeight="Bold" FontSize="16"/>
             <Label x:Name ="ScoreP1_Box" Content="" HorizontalAlignment="Left" Margin="96,171,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
             <Label x:Name ="ScoreP2_Box" Content="" HorizontalAlignment="Left" Margin="470,178,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.722,0.769"/>
+            <Label x:Name="msgs" Content="" HorizontalAlignment="Left" Height="23" Margin="32,287,0,0" VerticalAlignment="Top" Width="461" FontFamily="Arial Black" FontWeight="Bold" FontSize="11" Background="#FFB0EA9A"/>
         </Grid>
 
     </Grid>
